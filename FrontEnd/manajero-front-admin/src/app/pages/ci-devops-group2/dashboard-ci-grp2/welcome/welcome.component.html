@@ -1,3 +1,170 @@
-<!-- welcome.component.html -->
-<h2>Welcome grp 2</h2>
-<p>This is the homepage for grp 2 dashboard CI.</p>
+
+<nb-layout>
+    <nb-layout-column>
+
+      <div class="flip-card">
+        <nb-flip-card>
+            <nb-card-front>
+                <nb-card status="info" style="height: 400px;">
+                    <nb-card-header>Bienvenue dans le Dashboard CI DevOps!</nb-card-header>
+                    <nb-card-body>
+                        <br>Ce guide vous expliquera comment utiliser les principales fonctionnalités du tableau de bord pour gérer vos intégrations continues de manière efficace et intuitive. 
+                    </nb-card-body>
+                </nb-card>
+            </nb-card-front>
+            <nb-card-back>
+              <nb-card style="height: 400px;" >
+                <nb-card-body>
+                    <img src="https://scaledagileframework.com/wp-content/uploads/2023/01/Continuous_Integration_F02-1.svg" alt="Welcome Image" style="width: 100%; height: 90%;">
+                </nb-card-body>
+              </nb-card>
+            </nb-card-back>
+          </nb-flip-card>
+      </div>
+  
+      <nb-card accent="info">
+        <nb-card-header>C'est quoi CI?</nb-card-header>
+        <nb-card-body>
+            Continuous Integration (CI) est une pratique fondamentale de DevOps qui implique l'intégration fréquente des modifications de code dans un référentiel partagé. Chaque changement est ensuite validé par la création automatique d'une version du logiciel et l'exécution de tests pour identifier les erreurs le plus tôt possible. L'objectif est de garantir que le code est toujours dans un état prêt à être déployé, avec une qualité maintenue à chaque étape. 
+        </nb-card-body>
+        <nb-card-footer>
+            <img src="https://miro.medium.com/v2/resize:fit:1400/0*wg0O6uL5yJEWpqGt.jpg" alt="Welcome Image" style="width: 100%; height: 90%;">
+        </nb-card-footer>
+        <nb-card-footer>
+            <img src="https://devonblog.com/wp-content/uploads/2019/07/c-i-100.jpg" alt="Welcome Image" style="width: 100%; height: 90%;">
+        </nb-card-footer>
+      </nb-card>
+      
+      <nb-accordion>
+
+        <nb-accordion-item>
+         <nb-accordion-item-header>What : Qu'est-ce que CI ?</nb-accordion-item-header>
+         <nb-accordion-item-body>
+            <div>
+                <ng-container>
+                  Référentiel partagé : Un dépôt central où tout le code est stocké. <br>
+                  Intégration fréquente : Les développeurs intègrent leur code fréquemment, souvent plusieurs fois par jour. <br>
+                  Processus de Continuous Integration : Il s'agit d'un cycle de développement où chaque commit de code déclenche une série de tests et de builds automatisés. <br>
+                  Feedback rapide : Les développeurs reçoivent rapidement des retours sur les erreurs éventuelles. <br>
+                  Phases clés : <br>
+                  1. Commit : Les développeurs intègrent leur code dans le référentiel partagé. <br>
+                  2. Build : Le code est automatiquement construit (compilé) et déployé dans un environnement de test. <br>
+                  3. Test : Une suite de tests automatisés est exécutée pour valider le nouveau code. <br>
+                  4. Feedback : Les résultats des tests sont renvoyés aux développeurs pour qu'ils corrigent les éventuelles erreurs.
+                </ng-container>
+              </div>
+        </nb-accordion-item-body>
+        </nb-accordion-item>
+
+        <nb-accordion-item>
+            <nb-accordion-item-header>Why : Pourquoi utiliser CI ?</nb-accordion-item-header>
+            <nb-accordion-item-body>
+                <div>
+                    <ng-container>
+                      Détecter et corriger rapidement les erreurs d'intégration : CI permet de repérer et de corriger rapidement les erreurs dans le code, ce qui réduit les coûts et les délais de correction. <br>
+                      Améliorer la qualité du code : En automatisant les tests et les builds, CI assure que le code est toujours dans un état stable et prêt à être déployé. <br>
+                      Faciliter la collaboration entre les équipes : CI encourage les équipes à intégrer leurs modifications de code fréquemment, réduisant ainsi les conflits et les intégrations de dernière minute. <br>
+                      Cycle de développement plus rapide : Les équipes peuvent livrer plus rapidement et plus fréquemment. <br>
+                      Réduction du risque de conflits : En intégrant fréquemment, les conflits de code sont minimisés.
+                    </ng-container>
+                  </div>
+            </nb-accordion-item-body>
+        </nb-accordion-item>
+
+        <nb-accordion-item>
+            <nb-accordion-item-header>How : Comment mettre en œuvre CI ?</nb-accordion-item-header>
+            <nb-accordion-item-body>
+                <div>
+                    <ng-container>
+                      1. Configurer un référentiel partagé : Utiliser des outils comme Git pour gérer le code source. <br>
+                      2. Automatiser les tests : Écrire des tests automatisés qui couvrent le code de manière exhaustive. <br>
+                      3. Configurer un serveur CI : Utiliser des outils comme Jenkins, Travis CI, ou CircleCI pour automatiser les processus d'intégration. <br>
+                      4. Définir des pipelines CI : Créer des pipelines qui définissent les étapes à suivre pour intégrer et valider le code. <br>
+                      5. Surveiller et ajuster : Mettre en place des outils de surveillance pour suivre les builds et ajuster les pipelines selon les besoins.
+                    </ng-container>
+                  </div>
+            </nb-accordion-item-body>
+        </nb-accordion-item>
+
+        <nb-accordion-item>
+            <nb-accordion-item-header>What if : Adaptations de CI pour différents types de projets et exigences de développement</nb-accordion-item-header>
+            <nb-accordion-item-body>
+                <div>
+                    <ng-container>
+                      Projets web : Intégrer des tests de bout en bout (E2E) pour s'assurer que toutes les fonctionnalités web fonctionnent correctement. <br>
+                      Applications mobiles : Utiliser des émulateurs pour tester l'application sur différents appareils et systèmes d'exploitation. <br>
+                      Logiciels embarqués : Tester sur des environnements simulés et réels pour garantir la compatibilité avec le matériel spécifique.
+                    </ng-container>
+                  </div>
+            </nb-accordion-item-body>
+        </nb-accordion-item>
+
+      </nb-accordion>
+
+      <div style="margin-top: 10px; margin-top: 20px; margin-top: 30px;">
+        <h2>Étapes pour Utiliser le Dashboard</h2>
+      <nb-card>
+        <nb-card-body>
+          <nb-stepper orientation="horizontal">
+            <nb-step label="First step">
+              <h4>1.	Ajouter un Nouveau Projet</h4>
+              <p class="lorem">
+                Cliquez sur "Projets" dans la barre de navigation.
+Cliquez sur le bouton "Ajouter un nouveau projet".
+Remplissez les informations du projet (nom, description, référentiel de code, etc.).
+Cliquez sur "Enregistrer".
+              </p>
+              
+              <button nbButton disabled nbStepperNext>prev</button>
+              <button nbButton nbStepperNext>next</button>
+            </nb-step>
+            <nb-step label="Second step">
+              <h4>2.	Configurer un Pipeline CI</h4>
+              <p class="lorem">
+                Sélectionnez le projet pour lequel vous souhaitez configurer un pipeline.
+Cliquez sur "Configurer Pipeline".
+Définissez les étapes du pipeline (pull du code, tests unitaires, tests d'intégration, build, déploiement).
+Enregistrez la configuration.
+              </p>
+              <button nbButton nbStepperPrevious>prev</button>
+              <button nbButton nbStepperNext>next</button>
+            </nb-step>
+            <nb-step label="Third step">
+              <h4>3.	Déclencher un Build Manuellement</h4>
+              <p class="lorem">
+                Allez dans la section "Builds".
+                Sélectionnez le projet et le pipeline souhaité.
+                Cliquez sur "Déclencher un build".
+                Suivez l'état du build en temps réel.                
+              </p>
+              <button nbButton nbStepperPrevious>prev</button>
+              <button nbButton nbStepperNext>next</button>
+            </nb-step>
+            <nb-step label="Fourth step">
+              <h4>4.	Voir les Résultats des Tests</h4>
+              <p class="lorem">
+                Allez dans la section "Tests".
+                Sélectionnez le build dont vous souhaitez voir les résultats.
+                Consultez les résultats des tests unitaires et d'intégration.                
+              </p>
+              <button nbButton nbStepperPrevious>prev</button>
+              <button nbButton disabled nbStepperNext>next</button>
+            </nb-step>
+          </nb-stepper>
+        </nb-card-body>
+      </nb-card>
+      </div>
+
+      <nb-card accent="info">
+        <nb-card-header>Bonnes Pratiques</nb-card-header>
+        <nb-card-body>
+            Commits Fréquents : Faites des commits fréquents pour détecter les erreurs rapidement. <br>
+            <br>Tests Exhaustifs : Couvrez votre code avec des tests unitaires et d'intégration pour garantir sa fiabilité. <br>
+            <br>Surveillance Continue : Utilisez les fonctionnalités de surveillance pour rester informé de l'état de vos pipelines et déploiements. <br>
+            <br>Automatisation Maximale : Automatisez autant que possible pour réduire les erreurs humaines et accélérer les processus. <br>
+        </nb-card-body>
+      </nb-card>
+
+    </nb-layout-column>
+  </nb-layout>
+  
