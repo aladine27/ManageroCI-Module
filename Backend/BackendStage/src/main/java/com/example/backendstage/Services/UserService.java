@@ -4,7 +4,7 @@ import com.example.backendstage.Entity.user;
 import com.example.backendstage.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+   
 import java.util.List;
 
 @Service
