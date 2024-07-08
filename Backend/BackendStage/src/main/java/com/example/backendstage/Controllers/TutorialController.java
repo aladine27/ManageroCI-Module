@@ -3,10 +3,8 @@ package com.example.backendstage.Controllers;
 import com.example.backendstage.Entity.Tutorial;
 import com.example.backendstage.Services.TutorialService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,14 +33,14 @@ public class TutorialController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/add")
+   /* @PostMapping("/add")
     public ResponseEntity<Tutorial> createTutorial(
             @RequestParam("titre") String titre,
             @RequestParam("description") String description,
             @RequestParam("imagePath") MultipartFile file) {
 
         try {
-            String imagePath = "/upload/" + file.getOriginalFilename(); // Assuming imagePath is stored as a path
+            String imagePath = "/uploads/" + file.getOriginalFilename(); // Assuming imagePath is stored as a path
             Tutorial tutorial = new Tutorial();
             tutorial.setTitre(titre);
             tutorial.setDescription(description);
@@ -53,7 +51,12 @@ public class TutorialController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-    }
+    }*/
+   @PostMapping("/addTuto")
+   public Tutorial addtuto(@RequestBody Tutorial tutorial){
+
+       return tutorialService.createTutorial(tutorial);
+   }
 
     @PutMapping("/modify/{id}")
     public ResponseEntity<Tutorial> updateTutorial(@PathVariable String id, @RequestBody Tutorial tutorial) {
