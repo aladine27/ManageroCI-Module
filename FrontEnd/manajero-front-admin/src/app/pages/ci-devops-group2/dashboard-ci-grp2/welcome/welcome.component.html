@@ -2,13 +2,13 @@
 <nb-layout>
     <nb-layout-column>
 
-      <div class="flip-card">
+      <div class="flip-card" *ngFor="let tutorial of tutorials">
         <nb-flip-card>
             <nb-card-front>
                 <nb-card status="info" style="height: 400px;">
-                    <nb-card-header>Bienvenue dans le Dashboard CI DevOps!</nb-card-header>
+                    <nb-card-header>{{ tutorial.titre }}</nb-card-header>
                     <nb-card-body>
-                        <br>Ce guide vous expliquera comment utiliser les principales fonctionnalités du tableau de bord pour gérer vos intégrations continues de manière efficace et intuitive. 
+                        <br>{{ tutorial.description }}
                     </nb-card-body>
                 </nb-card>
             </nb-card-front>
