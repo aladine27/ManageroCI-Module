@@ -3,6 +3,7 @@
     <nb-layout-column>
 
       <div class="flip-card" *ngFor="let tutorial of tutorials">
+        <ng-container *ngIf="tutorial.titre === 'Bienvenue'">
         <nb-flip-card>
             <nb-card-front>
                 <nb-card status="info" style="height: 400px;">
@@ -15,11 +16,12 @@
             <nb-card-back>
               <nb-card style="height: 400px;" >
                 <nb-card-body>
-                    <img src="https://scaledagileframework.com/wp-content/uploads/2023/01/Continuous_Integration_F02-1.svg" alt="Welcome Image" style="width: 100%; height: 90%;">
+                  <img [src]="tutorial.imagePath" alt="Welcome Image" style="width: 100%; height: 90%;">
                 </nb-card-body>
               </nb-card>
             </nb-card-back>
-          </nb-flip-card>
+        </nb-flip-card>
+        </ng-container>
       </div>
   
       <nb-card accent="info">
