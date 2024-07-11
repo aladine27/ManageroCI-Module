@@ -10,7 +10,7 @@
                 <nb-card status="info" style="height: 400px;">
                     <nb-card-header>{{ tutorial.titre }}</nb-card-header>
                     <nb-card-body>
-                        <br>{{ tutorial.description }}
+                          <div [innerHTML]="tutorial.description"></div>
                     </nb-card-body>
                 </nb-card>
             </nb-card-front>
@@ -50,7 +50,7 @@
          <nb-accordion-item-body>
             <div>
                 <ng-container>
-                  {{ tutorial.description }} 
+                <div [innerHTML]="tutorial.description"></div>
                 </ng-container>
               </div>
         </nb-accordion-item-body>
@@ -61,7 +61,7 @@
             <nb-accordion-item-body>
                 <div>
                     <ng-container>
-                      {{ tutorial.description }} 
+                      <div [innerHTML]="tutorial.description"></div>
                     </ng-container>
                   </div>
             </nb-accordion-item-body>
@@ -72,7 +72,7 @@
             <nb-accordion-item-body>
                 <div>
                     <ng-container>
-                      {{ tutorial.description }} 
+                      <div [innerHTML]="tutorial.description"></div>
                     </ng-container>
                   </div>
             </nb-accordion-item-body>
@@ -83,7 +83,7 @@
             <nb-accordion-item-body>
                 <div>
                     <ng-container>
-                      {{ tutorial.description }}  
+                      <div [innerHTML]="tutorial.description"></div>
                     </ng-container>
                   </div>
             </nb-accordion-item-body>
