@@ -21,8 +21,7 @@ import { DashboardCiGrp2Module } from './ci-devops-group2/dashboard-ci-grp2/dash
   ],
   declarations: [
     PagesComponent,
-
+    // EditTutorialComponent, // Remove this line
   ],
 })
-export class PagesModule {
-}
+export class PagesModule {}

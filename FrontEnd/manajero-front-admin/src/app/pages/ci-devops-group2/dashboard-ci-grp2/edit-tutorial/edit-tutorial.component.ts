@@ -1,0 +1,42 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TutorialService } from '../../../../services/tutorial.service';
+import { Tutorial } from '../../../../models/tutorial.model';
+import QuillType from 'quill';
+// Pas besoin d'importer Delta
+
+@Component({
+  selector: 'ngx-edit-tutorial',
+  templateUrl: './edit-tutorial.component.html',
+  styleUrls: ['./edit-tutorial.component.scss']
+})
+export class EditTutorialComponent implements OnInit {
+  tutorial: Tutorial | undefined;
+
+  constructor(private route: ActivatedRoute, private tutorialService: TutorialService, private router: Router) { }
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.tutorialService.getById(id).subscribe((data: Tutorial) => {
+        this.tutorial = data;
+      }, error => {
+        console.error('Error fetching tutorial:', error);
+      });
+    } else {
+      console.error('ID is undefined. Cannot fetch tutorial.');
+    }
+  }
+
+  // Méthode pour soumettre le formulaire d'édition
+ updateTutorial() {
+    if (this.tutorial) {
+      this.tutorialService.update(this.tutorial.id, this.tutorial).subscribe(() => {
+        this.router.navigate([['/agile/ci-devops-group2/edit-tutorial', this.tutorial.id]]);
+      }, error => {
+        console.error('Error updating tutorial:', error);
+      });
+    }
+  }
+
+}

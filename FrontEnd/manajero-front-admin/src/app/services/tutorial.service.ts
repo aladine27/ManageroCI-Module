@@ -18,16 +18,19 @@ export class TutorialService {
   get(id: string): Observable<Tutorial> {
     return this.http.get<Tutorial>(`${this.apiUrl}/${id}`);
   }
+    getById(id: string): Observable<Tutorial> {
+    return this.http.get<Tutorial>(`${this.apiUrl}/${id}`);
+  }
 
   create(tutorial: Tutorial): Observable<Tutorial> {
     return this.http.post<Tutorial>(this.apiUrl, tutorial);
   }
+update(id: string, tutorial: Tutorial): Observable<Tutorial> {
+  return this.http.put<Tutorial>(`${this.apiUrl}/modify/${id}`, tutorial);
+}
 
-  update(id: string, tutorial: Tutorial): Observable<Tutorial> {
-    return this.http.put<Tutorial>(`${this.apiUrl}/${id}`, tutorial);
-  }
 
   delete(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
   }
 }
