@@ -18,8 +18,9 @@
                 <img [src]="tutorial.imagePath" alt="Welcome Image" style="width: 100%; height: 90%;">
               </nb-card-body>
               <nb-card-footer>
-              <button nbButton [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
-              <button nbButton (click)="deleteTutorial(tutorial.id)">Supprimer</button>
+                <button nbButton
+                  [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+                <button nbButton (click)="deleteTutorial(tutorial.id)">Supprimer</button>
 
               </nb-card-footer>
             </nb-card>
@@ -36,8 +37,8 @@
         </nb-card-body>
         <nb-card-footer>
           <img [src]="tutorial.imagePath" alt="Welcome Image" style="width: 100%; height: 90%;">
-            <button nbButton [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
-            <button nbButton (click)="deleteTutorial(tutorial.id)">Supprimer</button>
+          <button nbButton [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+          <button nbButton (click)="deleteTutorial(tutorial.id)">Supprimer</button>
 
         </nb-card-footer>
         <ng-container *ngFor="let otherTutorial of tutorials">
@@ -60,8 +61,9 @@
               <ng-container>
                 <div [innerHTML]="tutorial.description"></div>
               </ng-container>
-                  <button nbButton (click)="deleteTutorial(tutorial.id)">Supprimer</button>
-              <button nbButton [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+              <button nbButton (click)="deleteTutorial(tutorial.id)">Supprimer</button>
+              <button nbButton
+                [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
             </div>
           </nb-accordion-item-body>
         </nb-accordion-item>
@@ -73,7 +75,8 @@
               <ng-container>
                 <div [innerHTML]="tutorial.description"></div>
               </ng-container>
-            <button nbButton [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+              <button nbButton
+                [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
             </div>
           </nb-accordion-item-body>
         </nb-accordion-item>
@@ -85,7 +88,8 @@
               <ng-container>
                 <div [innerHTML]="tutorial.description"></div>
               </ng-container>
-            <button nbButton [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+              <button nbButton
+                [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
             </div>
           </nb-accordion-item-body>
         </nb-accordion-item>
@@ -97,7 +101,8 @@
               <ng-container>
                 <div [innerHTML]="tutorial.description"></div>
               </ng-container>
-              <button nbButton [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+              <button nbButton
+                [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
             </div>
           </nb-accordion-item-body>
         </nb-accordion-item>
@@ -116,7 +121,8 @@
                 <p class="lorem">{{ tutorial.description }}</p>
                 <button nbButton disabled nbStepperNext>prev</button>
                 <button nbButton nbStepperNext>next</button>
-              <button nbButton [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+                <button nbButton
+                  [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
               </nb-step>
 
               <nb-step label="Second step" *ngIf="tutorial.id === '668e5cf29a34fd0b07944ec3'">
@@ -124,7 +130,8 @@
                 <p class="lorem">{{ tutorial.description }}</p>
                 <button nbButton nbStepperPrevious>prev</button>
                 <button nbButton nbStepperNext>next</button>
-              <button nbButton [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+                <button nbButton
+                  [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
               </nb-step>
 
               <nb-step label="Third step" *ngIf="tutorial.id === '668e5d349a34fd0b07944ec4'">
@@ -132,7 +139,8 @@
                 <p class="lorem">{{ tutorial.description }}</p>
                 <button nbButton nbStepperPrevious>prev</button>
                 <button nbButton nbStepperNext>next</button>
-              <button nbButton [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+                <button nbButton
+                  [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
               </nb-step>
 
               <nb-step label="Fourth step" *ngIf="tutorial.id === '668e5d729a34fd0b07944ec5'">
@@ -140,7 +148,8 @@
                 <p class="lorem">{{ tutorial.description }}</p>
                 <button nbButton nbStepperPrevious>prev</button>
                 <button nbButton disabled nbStepperNext>next</button>
-                <button nbButton [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+                <button nbButton
+                  [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
               </nb-step>
             </ng-container>
           </nb-stepper>
@@ -157,6 +166,6 @@
         </nb-card-body>
       </nb-card>
     </ng-container>
-
+  <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/add-tuto">Add Tuto</button>
   </nb-layout-column>
 </nb-layout>

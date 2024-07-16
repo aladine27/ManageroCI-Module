@@ -7,12 +7,15 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { EditTutorialComponent } from './edit-tutorial/edit-tutorial.component';
 import { QuillModule } from 'ngx-quill';
 
+import { AddTutoComponent } from './add-tuto/add-tuto.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     WelcomeComponent,
     EditTutorialComponent,
+    AddTutoComponent
   ],
   imports: [
     QuillModule.forRoot(),
@@ -25,6 +28,7 @@ import { QuillModule } from 'ngx-quill';
     NbButtonModule,
      FormsModule,
 
+    ReactiveFormsModule
   ]
 })
 export class DashboardCiGrp2Module { 

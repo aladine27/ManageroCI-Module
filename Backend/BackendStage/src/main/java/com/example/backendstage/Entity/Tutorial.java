@@ -56,6 +56,11 @@ import org.springframework.data.mongodb.core.mapping.Field;
         public Tutorial() {
         }
 
+        public Tutorial(String titre, String description) {
+            this.titre = titre;
+            this.description = description;
+        }
+
         @Override
         public String toString() {
             return "Tutorial{" +
