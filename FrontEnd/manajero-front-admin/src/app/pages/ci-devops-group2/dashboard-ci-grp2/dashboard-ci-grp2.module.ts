@@ -4,11 +4,14 @@ import { NbLayoutModule, NbCardModule, NbStepperModule, NbAccordionModule, NbBut
 
 import { DashboardCiGrp2RoutingModule } from './dashboard-ci-grp2-routing.module';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { AddTutoComponent } from './add-tuto/add-tuto.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    WelcomeComponent
+    WelcomeComponent,
+    AddTutoComponent
   ],
   imports: [
     CommonModule,
@@ -18,6 +21,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     NbStepperModule,
     NbAccordionModule,
     NbButtonModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardCiGrp2Module { }

@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { WelcomeComponent } from './ci-devops-group2/dashboard-ci-grp2/welcome/welcome.component';
+import { AddTutoComponent } from './ci-devops-group2/dashboard-ci-grp2/add-tuto/add-tuto.component';
 
 const routes: Routes = [{
   path: '',
@@ -69,7 +70,15 @@ const routes: Routes = [{
       loadChildren: () => import('./miscellaneous/miscellaneous.module')
         .then(m => m.MiscellaneousModule),
     },
-    { path: 'agile/ci-devops-group2', component: WelcomeComponent },
+    {
+      path: 'agile/ci-devops-group2', // Make sure this matches your existing structure
+      children: [
+        { path: 'dashboard', component: WelcomeComponent }, // Define the route for adding tutorial here
+        { path: 'add-tuto', component: AddTutoComponent }, // Define the route for adding tutorial here
+        { path: '', component: WelcomeComponent }, // Assuming 'WelcomeComponent' is the default path
+        { path: '**', component: NotFoundComponent }, // Handle 404 errors
+      ]
+    },
     {
       path: '',
       redirectTo: 'dashboard',

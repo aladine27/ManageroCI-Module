@@ -20,7 +20,7 @@ export class TutorialService {
   }
 
   create(tutorial: Tutorial): Observable<Tutorial> {
-    return this.http.post<Tutorial>(this.apiUrl, tutorial);
+    return this.http.post<Tutorial>(`${this.apiUrl}/addTuto`, tutorial);
   }
 
   update(id: string, tutorial: Tutorial): Observable<Tutorial> {

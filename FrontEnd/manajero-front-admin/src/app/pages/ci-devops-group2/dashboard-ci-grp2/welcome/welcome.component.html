@@ -11,8 +11,11 @@
                     <nb-card-header>{{ tutorial.titre }}</nb-card-header>
                     <nb-card-body>
                           <div [innerHTML]="tutorial.description"></div>
+                          <button nbButton (click)="editTutorial(tutorial.id)">Edit</button>
+                          <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Delete</button>          
                     </nb-card-body>
                 </nb-card>
+                
             </nb-card-front>
             <nb-card-back>
               <nb-card style="height: 400px;" >
@@ -30,6 +33,9 @@
           <nb-card-header>{{ tutorial.titre }}</nb-card-header>
         <nb-card-body>
           {{ tutorial.description }}
+          <br/>
+          <button nbButton (click)="editTutorial(tutorial.id)">Edit</button>
+          <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Delete</button>
         </nb-card-body>
         <nb-card-footer>
             <img [src]="tutorial.imagePath" alt="Welcome Image" style="width: 100%; height: 90%;">
@@ -39,10 +45,12 @@
             <img [src]="otherTutorial.imagePath" alt="Additional Image" style="width: 100%; height: 90%;">
           </nb-card-footer>
         </ng-container>
+        
       </nb-card>
+      
       </ng-container>
       
-        <ng-container *ngFor="let tutorial of tutorials">
+      <ng-container *ngFor="let tutorial of tutorials">
         <nb-accordion>
 
         <nb-accordion-item *ngIf="tutorial.id === '668bdf75df002d050d225afb'">
@@ -51,6 +59,8 @@
             <div>
                 <ng-container>
                 <div [innerHTML]="tutorial.description"></div>
+                <button nbButton (click)="editTutorial(tutorial.id)">Edit</button>
+                <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Delete</button>
                 </ng-container>
               </div>
         </nb-accordion-item-body>
@@ -62,6 +72,8 @@
                 <div>
                     <ng-container>
                       <div [innerHTML]="tutorial.description"></div>
+                      <button nbButton (click)="editTutorial(tutorial.id)">Edit</button>
+                      <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Delete</button>      
                     </ng-container>
                   </div>
             </nb-accordion-item-body>
@@ -73,6 +85,8 @@
                 <div>
                     <ng-container>
                       <div [innerHTML]="tutorial.description"></div>
+                      <button nbButton (click)="editTutorial(tutorial.id)">Edit</button>
+                      <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Delete</button>      
                     </ng-container>
                   </div>
             </nb-accordion-item-body>
@@ -84,6 +98,8 @@
                 <div>
                     <ng-container>
                       <div [innerHTML]="tutorial.description"></div>
+                      <button nbButton (click)="editTutorial(tutorial.id)">Edit</button>
+                      <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Delete</button>      
                     </ng-container>
                   </div>
             </nb-accordion-item-body>
@@ -104,6 +120,9 @@
               <h4>{{ tutorial.titre }}</h4>
               <p class="lorem">
                 {{ tutorial.description }}
+                <br/>
+                <button nbButton (click)="editTutorial(tutorial.id)">Edit</button>
+                <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Delete</button>
               </p>
               
               <button nbButton disabled nbStepperNext>prev</button>
@@ -114,6 +133,10 @@
               <h4>{{ tutorial.titre }}</h4>
               <p class="lorem">
                 {{ tutorial.description }}
+                <br/>
+                <button nbButton (click)="editTutorial(tutorial.id)">Edit</button>
+                <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Delete</button>
+
               </p>
               <button nbButton nbStepperPrevious>prev</button>
               <button nbButton nbStepperNext>next</button>
@@ -122,7 +145,11 @@
             <nb-step label="Third step" *ngIf="tutorial.id === '668e5d349a34fd0b07944ec4'">
               <h4>{{ tutorial.titre }}</h4>
               <p class="lorem">
-                {{ tutorial.description }}               
+                {{ tutorial.description }}    
+                <br/>
+                <button nbButton (click)="editTutorial(tutorial.id)">Edit</button>
+                <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Delete</button>
+           
               </p>
               <button nbButton nbStepperPrevious>prev</button>
               <button nbButton nbStepperNext>next</button>
@@ -131,7 +158,11 @@
             <nb-step label="Fourth step" *ngIf="tutorial.id === '668e5d729a34fd0b07944ec5'">
               <h4>{{ tutorial.titre }}</h4>
               <p class="lorem">
-                {{ tutorial.description }}               
+                {{ tutorial.description }}   
+                <br/>
+                <button nbButton (click)="editTutorial(tutorial.id)">Edit</button>
+                <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Delete</button>
+            
               </p>
               <button nbButton nbStepperPrevious>prev</button>
               <button nbButton disabled nbStepperNext>next</button>
@@ -149,12 +180,32 @@
       <nb-card accent="info"  *ngIf="tutorial.id === '668e5da79a34fd0b07944ec6'">
         <nb-card-header>{{ tutorial.titre }}</nb-card-header>
         <nb-card-body>
-          {{ tutorial.description }}    
+          {{ tutorial.description }}
+          <br/>
+          <button nbButton (click)="editTutorial(tutorial.id)">Edit</button>
+          <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Delete</button>
         </nb-card-body>
+      </nb-card>
+      </ng-container>
+
+       <!-- Display tutorials starting from the 13th tutorial -->
+    <ng-container *ngFor="let tutorial of tutorials.slice(12)">
+      <nb-card accent="info">
+        <nb-card-header>{{ tutorial.titre }}</nb-card-header>
+        <nb-card-body>
+          {{ tutorial.description }}
+          <br/>
+          <button nbButton (click)="editTutorial(tutorial.id)">Edit</button>
+          <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Delete</button>
+        </nb-card-body>
+        <nb-card-footer *ngIf="tutorial.imagePath">
+          <img [src]="tutorial.imagePath" alt="Tutorial Image" style="width: 100%; height: 90%;">
+        </nb-card-footer>
       </nb-card>
     </ng-container>
 
-
+    <!-- À la fin de votre template welcome.component.html -->
+    <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/add-tuto">Add Tuto</button>
 
     </nb-layout-column>
   </nb-layout>
