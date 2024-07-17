@@ -1,33 +1,34 @@
 <nb-card>
-    <nb-card-header>Add New Tutorial</nb-card-header>
-    <nb-card-body>
-      <form [formGroup]="tutorialForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="titre">Title</label>
-          <input nbInput id="titre" formControlName="titre" />
-          <nb-alert *ngIf="tutorialForm.get('titre').invalid && tutorialForm.get('titre').touched" status="danger">
-            Title is required.
-          </nb-alert>
-        </div>
-        <div class="form-group">
-          <label for="description">Description</label>
-          <textarea nbInput id="description" formControlName="description"></textarea>
-          <nb-alert *ngIf="tutorialForm.get('description').invalid && tutorialForm.get('description').touched" status="danger">
-            Description is required.
-          </nb-alert>
-        </div>
-        <div class="form-group">
-          <label for="imagePath">Image URL</label>
-          <input nbInput id="imagePath" formControlName="imagePath" />
-          <nb-alert *ngIf="tutorialForm.get('imagePath').invalid && tutorialForm.get('imagePath').touched" status="danger">
-            Image URL is required.
-          </nb-alert>
-        </div>
-        <button nbButton status="success" type="submit" [disabled]="tutorialForm.invalid">Add Tutorial</button>
-      </form>
-      <nb-alert *ngIf="successMessage" status="success">
-        {{ successMessage }}
-      </nb-alert>
-    </nb-card-body>
-  </nb-card>
-  
+  <nb-card-header>Add New Tutorial</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="tutorialForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="titre">Title</label>
+        <input nbInput id="titre" formControlName="titre" />
+        <nb-alert *ngIf="tutorialForm.get('titre').invalid && tutorialForm.get('titre').touched" status="danger">
+          Title is required.
+        </nb-alert>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <quill-editor id="description" formControlName="description"></quill-editor>
+        <nb-alert *ngIf="tutorialForm.get('description').invalid && tutorialForm.get('description').touched"
+          status="danger">
+          Description is required.
+        </nb-alert>
+      </div>
+      <div class="form-group">
+        <label for="imagePath">Image URL</label>
+        <input nbInput id="imagePath" formControlName="imagePath" />
+        <nb-alert *ngIf="tutorialForm.get('imagePath').invalid && tutorialForm.get('imagePath').touched"
+          status="danger">
+          Image URL is required.
+        </nb-alert>
+      </div>
+      <button nbButton status="success" type="submit" [disabled]="tutorialForm.invalid">Add Tutorial</button>
+    </form>
+    <nb-alert *ngIf="successMessage" status="success">
+      {{ successMessage }}
+    </nb-alert>
+  </nb-card-body>
+</nb-card>
