@@ -32,7 +32,10 @@ export class EditTutorialComponent implements OnInit {
  updateTutorial() {
     if (this.tutorial) {
       this.tutorialService.update(this.tutorial.id, this.tutorial).subscribe(() => {
-        this.router.navigate([['/agile/ci-devops-group2/edit-tutorial', this.tutorial.id]]);
+            // Redirection après 2 secondes
+            setTimeout(() => {
+              this.router.navigate(['/pages/agile/ci-devops-group2']);
+            }, 2000);
       }, error => {
         console.error('Error updating tutorial:', error);
       });

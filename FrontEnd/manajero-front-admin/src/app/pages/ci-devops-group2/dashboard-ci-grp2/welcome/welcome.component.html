@@ -20,8 +20,7 @@
               <nb-card-footer>
                 <button nbButton
                   [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
-                <button nbButton (click)="deleteTutorial(tutorial.id)">Supprimer</button>
-
+                <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Supprimer</button>
               </nb-card-footer>
             </nb-card>
           </nb-card-back>
@@ -38,15 +37,13 @@
         <nb-card-footer>
           <img [src]="tutorial.imagePath" alt="Welcome Image" style="width: 100%; height: 90%;">
           <button nbButton [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
-          <button nbButton (click)="deleteTutorial(tutorial.id)">Supprimer</button>
-
+          <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Supprimer</button>
         </nb-card-footer>
         <ng-container *ngFor="let otherTutorial of tutorials">
           <nb-card-footer *ngIf="otherTutorial.id === '668e5c329a34fd0b07944ec1'">
             <img [src]="otherTutorial.imagePath" alt="Additional Image" style="width: 100%; height: 90%;">
             <button nbButton [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
-            <button nbButton (click)="deleteTutorial(tutorial.id)">Supprimer</button>
-
+            <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Supprimer</button>
           </nb-card-footer>
         </ng-container>
       </nb-card>
@@ -64,6 +61,7 @@
               <button nbButton (click)="deleteTutorial(tutorial.id)">Supprimer</button>
               <button nbButton
                 [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+              <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Supprimer</button>
             </div>
           </nb-accordion-item-body>
         </nb-accordion-item>
@@ -77,6 +75,7 @@
               </ng-container>
               <button nbButton
                 [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+              <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Supprimer</button>
             </div>
           </nb-accordion-item-body>
         </nb-accordion-item>
@@ -90,6 +89,7 @@
               </ng-container>
               <button nbButton
                 [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+              <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Supprimer</button>
             </div>
           </nb-accordion-item-body>
         </nb-accordion-item>
@@ -103,6 +103,7 @@
               </ng-container>
               <button nbButton
                 [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+              <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Supprimer</button>
             </div>
           </nb-accordion-item-body>
         </nb-accordion-item>
@@ -123,6 +124,7 @@
                 <button nbButton nbStepperNext>next</button>
                 <button nbButton
                   [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+                <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Supprimer</button>
               </nb-step>
 
               <nb-step label="Second step" *ngIf="tutorial.id === '668e5cf29a34fd0b07944ec3'">
@@ -132,6 +134,7 @@
                 <button nbButton nbStepperNext>next</button>
                 <button nbButton
                   [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+                <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Supprimer</button>
               </nb-step>
 
               <nb-step label="Third step" *ngIf="tutorial.id === '668e5d349a34fd0b07944ec4'">
@@ -141,6 +144,7 @@
                 <button nbButton nbStepperNext>next</button>
                 <button nbButton
                   [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+                <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Supprimer</button>
               </nb-step>
 
               <nb-step label="Fourth step" *ngIf="tutorial.id === '668e5d729a34fd0b07944ec5'">
@@ -150,6 +154,7 @@
                 <button nbButton disabled nbStepperNext>next</button>
                 <button nbButton
                   [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+                <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Supprimer</button>
               </nb-step>
             </ng-container>
           </nb-stepper>
@@ -163,18 +168,20 @@
         <nb-card-body>
           <div [innerHTML]="tutorial.description"></div>
           <button nbButton [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+          <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Supprimer</button>
         </nb-card-body>
       </nb-card>
     </ng-container>
-    <!-- Display tutorials starting from the 13th tutorial -->
-    <ng-container *ngFor="let tutorial of tutorials.slice(12)">
+    <!-- Display tutorials starting from the 11th tutorial -->
+    <ng-container *ngFor="let tutorial of tutorials.slice(11)">
       <nb-card accent="info">
         <nb-card-header>{{ tutorial.titre }}</nb-card-header>
         <nb-card-body>
             <div [innerHTML]="tutorial.description"></div>
           <br />
-          <button  [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
-          <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Delete</button>
+          <button nbButton [routerLink]="['/pages/agile/ci-devops-group2/edit-tutorial', tutorial.id]">Éditer</button>
+          <button nbButton status="danger" (click)="deleteTutorial(tutorial.id)">Supprimer</button>
+
         </nb-card-body>
         <nb-card-footer *ngIf="tutorial.imagePath">
           <img [src]="tutorial.imagePath" alt="Tutorial Image" style="width: 100%; height: 90%;">
