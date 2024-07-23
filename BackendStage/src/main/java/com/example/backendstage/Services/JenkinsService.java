@@ -1,12 +1,23 @@
 package com.example.backendstage.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class JenkinsService {
+    private static final Logger logger = LoggerFactory.getLogger(JenkinsService.class);
+    @Value("${jenkins.url}")
+    private String jenkinsUrl;
+    @Value("${jenkins.api.token}")
+    private String jenkinsApiToken;
+
+    @Value("${jenkins.job.name}")
+    private String jenkinsJobName;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -65,12 +76,39 @@ public class JenkinsService {
         }
     }
 
+
+
+    // Méthode pour déclencher un build Jenkins
+    public String triggerBuild(String jobName) {
+        String buildUrl = jenkinsUrl + "/job/" + jobName + "/build";
+        logger.info("Triggering Jenkins build at URL: {}", buildUrl);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + jenkinsApiToken);
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(buildUrl, HttpMethod.POST, entity, String.class);
+        logger.info("Response status from Jenkins build trigger: {}", response.getStatusCode());
+
+        if (response.getStatusCode() == HttpStatus.CREATED) {
+            return buildUrl + "/lastBuild";
+        } else {
+            logger.error("Failed to trigger Jenkins build. Response body: {}", response.getBody());
+            throw new RuntimeException("Failed to trigger Jenkins build");
+        }
+    }
+
     public String getJenkinsJobStatus(String jobUrl) {
         String apiUrl = jobUrl + "/lastBuild/api/json";
+        logger.info("Getting Jenkins job status from URL: {}", apiUrl);
+
         ResponseEntity<String> response = restTemplate.getForEntity(apiUrl, String.class);
+        logger.info("Response status from Jenkins job status request: {}", response.getStatusCode());
+
         if (response.getStatusCode() == HttpStatus.OK) {
             return response.getBody();
         } else {
+            logger.error("Failed to get Jenkins job status. Response body: {}", response.getBody());
             throw new RuntimeException("Failed to get Jenkins job status");
         }
     }

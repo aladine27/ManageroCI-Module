@@ -16,6 +16,10 @@ public class Pipeline {
         this.jenkinsJobUrl = jenkinsJobUrl;
         this.projectId = projectId;
     }
+    public Pipeline() {
+        // Constructeur par défaut
+    }
+
 
     private String name;
     private List<Stage> stages; // Liste d'objets Stage
