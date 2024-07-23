@@ -17,13 +17,13 @@ public class PipelineController {
     @Autowired
     private PipelineService pipelineService;
 
-    @GetMapping
+    @GetMapping("/getall")
     public ResponseEntity<List<Pipeline>> getAllPipelines() {
         List<Pipeline> pipelines = pipelineService.getAllPipelines();
         return new ResponseEntity<>(pipelines, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getpiplineby/{id}")
     public ResponseEntity<Pipeline> getPipelineById(@PathVariable String id) {
         Optional<Pipeline> pipeline = pipelineService.getPipelineById(id);
         return pipeline.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
@@ -45,7 +45,7 @@ public class PipelineController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deletePipeline(@PathVariable String id) {
         pipelineService.deletePipeline(id);
         return ResponseEntity.noContent().build();

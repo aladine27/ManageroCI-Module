@@ -18,14 +18,14 @@ public class StageController {
     private StageService stageService;
 
     // GET all stages
-    @GetMapping
+    @GetMapping("/getall")
     public ResponseEntity<List<Stage>> getAllStages() {
         List<Stage> stages = stageService.getAllStages();
         return new ResponseEntity<>(stages, HttpStatus.OK);
     }
 
     // GET stage by ID
-    @GetMapping("/{id}")
+    @GetMapping("/getstagebyid/{id}")
     public ResponseEntity<Stage> getStageById(@PathVariable String id) {
         Optional<Stage> stage = stageService.getStageById(id);
         return stage.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
@@ -39,7 +39,7 @@ public class StageController {
     }
 
     // PUT update an existing stage
-    @PutMapping("/{id}")
+    @PutMapping("/modify/{id}")
     public ResponseEntity<Stage> updateStage(@PathVariable String id, @RequestBody Stage stage) {
         Stage updatedStage = stageService.updateStage(id, stage);
         if (updatedStage != null) {
@@ -50,14 +50,14 @@ public class StageController {
     }
 
     // DELETE a stage
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteStage(@PathVariable String id) {
         stageService.deleteStage(id);
         return ResponseEntity.noContent().build();
     }
 
     // GET stages by pipelineId
-    @GetMapping("/pipeline/{pipelineId}")
+    @GetMapping("/GETstagesByPipelineId/{pipelineId}")
     public ResponseEntity<List<Stage>> getStagesByPipelineId(@PathVariable String pipelineId) {
         List<Stage> stages = stageService.getStagesByPipelineId(pipelineId);
         return new ResponseEntity<>(stages, HttpStatus.OK);
