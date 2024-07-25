@@ -8,6 +8,8 @@ import { NotFoundComponent } from './miscellaneous/not-found/not-found.component
 import { WelcomeComponent } from './ci-devops-group2/dashboard-ci-grp2/welcome/welcome.component';
 import { EditTutorialComponent } from './ci-devops-group2/dashboard-ci-grp2/edit-tutorial/edit-tutorial.component';
 import { AddTutoComponent } from './ci-devops-group2/dashboard-ci-grp2/add-tuto/add-tuto.component';
+import { ProjectMamagementComponent } from './ci-devops-group2/dashboard-ci-grp2/project-mamagement/project-mamagement.component';
+import { ProjectAddComponent } from './ci-devops-group2/dashboard-ci-grp2/project-mamagement/project-add/project-add.component';
 
 const routes: Routes = [{
   path: '',
@@ -74,7 +76,9 @@ const routes: Routes = [{
       {
       path: 'agile/ci-devops-group2', // Make sure this matches your existing structure
       children: [
-         { path: 'add-tuto', component: AddTutoComponent },
+        { path: 'add-tuto', component: AddTutoComponent },
+        { path: 'project-management', component: ProjectMamagementComponent },
+        { path: 'project-management/add-project', component: ProjectAddComponent },
         { path: 'dashboard', component: WelcomeComponent }, // Define the route for adding tutorial here
         { path: 'edit-tutorial/:id', component: EditTutorialComponent, },
         { path: '', component: WelcomeComponent }, // Assuming 'WelcomeComponent' is the default path
