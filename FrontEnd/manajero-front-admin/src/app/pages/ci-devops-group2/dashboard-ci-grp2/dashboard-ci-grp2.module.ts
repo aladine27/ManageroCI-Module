@@ -9,13 +9,18 @@ import { QuillModule } from 'ngx-quill';
 
 import { AddTutoComponent } from './add-tuto/add-tuto.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProjectMamagementComponent } from './project-mamagement/project-mamagement.component';
+import { ProjectEditComponent } from './project-mamagement/project-edit/project-edit.component';
+import { ProjectAddComponent } from './project-mamagement/project-add/project-add.component';
 
 
 @NgModule({
   declarations: [
     WelcomeComponent,
     EditTutorialComponent,
-    AddTutoComponent
+    AddTutoComponent,
+    ProjectMamagementComponent,
+    ProjectAddComponent,
   ],
   imports: [
     QuillModule.forRoot(),

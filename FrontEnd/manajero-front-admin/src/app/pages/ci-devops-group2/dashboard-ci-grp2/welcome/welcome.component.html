@@ -28,6 +28,15 @@
       </div>
     </ng-container>
 
+    <nb-card>
+      <nb-card-body>
+        <h3>Welcome to the Dashboard!</h3>
+        <p>Welcome to our Continuous Integration Dashboard. Manage your projects efficiently.</p>
+        <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/project-management">Manage Projects</button>
+      </nb-card-body>
+    </nb-card>
+    
+
     <ng-container *ngFor="let tutorial of tutorials">
       <nb-card accent="info" *ngIf="tutorial.id === '668e5bc69a34fd0b07944ec0'">
         <nb-card-header>{{ tutorial.titre }}</nb-card-header>
