@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from '../../../../models/project.model';
 import { ProjectService } from '../../../../services/project.service';
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-project-mamagement',
@@ -10,7 +11,10 @@ import { ProjectService } from '../../../../services/project.service';
 export class ProjectMamagementComponent implements OnInit {
   projects: Project[] = [];
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService,
+     private toastrService: NbToastrService
+
+  ) { }
 
   ngOnInit(): void {
     this.loadProjects();
@@ -35,7 +39,22 @@ export class ProjectMamagementComponent implements OnInit {
     // Logic to open the edit modal
   }
 
+  
+    deleteProject(id: string): void {
+    this.projectService.deleteProject(id).subscribe(
+      () => {
+        this.toastrService.success('Projet supprimé avec succès', 'Succès');
+        this.loadProjects(); // Recharger la liste des projets après suppression
+      },
+      error => {
+        console.error('Error deleting project', error);
+        this.toastrService.danger('Erreur lors de la suppression du projet', 'Erreur');
+      }
+    );
+  }
   confirmDeleteProject(project: Project): void {
-    // Logic to confirm and delete the project
+    if (confirm(`Êtes-vous sûr de vouloir supprimer le projet ${project.name} ?`)) {
+      this.deleteProject(project.id);
+    }
   }
 }

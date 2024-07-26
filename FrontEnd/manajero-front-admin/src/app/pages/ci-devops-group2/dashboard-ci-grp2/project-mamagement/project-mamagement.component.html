@@ -25,8 +25,7 @@
               (click)="viewProjectDetails(project)">View</button>
             <button nbButton class="custom-button custom-button-info"
               [routerLink]="['/pages/agile/ci-devops-group2/project-management/edit-project', project.id]">Edit</button>
-            <button nbButton class="custom-button custom-button-danger"
-              (click)="confirmDeleteProject(project)">Delete</button>
+          <button nbButton class="custom-button custom-button-danger" (click)="confirmDeleteProject(project)">Delete</button>
           </td>
         </tr>
       </tbody>
