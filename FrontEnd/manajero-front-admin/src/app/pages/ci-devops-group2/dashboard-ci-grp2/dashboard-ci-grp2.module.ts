@@ -21,6 +21,7 @@ import { ProjectAddComponent } from './project-mamagement/project-add/project-ad
     AddTutoComponent,
     ProjectMamagementComponent,
     ProjectAddComponent,
+    ProjectEditComponent,
   ],
   imports: [
     QuillModule.forRoot(),

@@ -1,25 +1,24 @@
-<!-- src/app/pages/ci-devops-group2/dashboard-ci-grp2/project-mamagement/project-add/project-add.component.html -->
 
 <nb-card>
-    <nb-card-header>
-      <h3>Ajouter un Nouveau Projet</h3>
-    </nb-card-header>
-    <nb-card-body>
-      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="name">Nom du Projet</label>
-          <input nbInput id="name" formControlName="name" required />
-        </div>
-        <div class="form-group">
-          <label for="description">Description</label>
-          <textarea nbInput id="description" formControlName="description" required></textarea>
-        </div>
-        <div class="form-group">
-          <label for="gitUrl">Git URL</label>
-          <input nbInput id="gitUrl" formControlName="gitUrl" required />
-        </div>
-        <button nbButton status="success" type="submit" [disabled]="!projectForm.valid">Ajouter Projet</button>
+  <nb-card-header>
+    <h3>Ajouter un Nouveau Projet</h3>
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Nom du Projet</label>
+        <input nbInput id="name" formControlName="name" placeholder="Entrez le nom du projet" required />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea nbInput id="description" formControlName="description" placeholder="Entrez une description" rows="5"
+          required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="gitUrl">Git URL</label>
+        <input nbInput id="gitUrl" formControlName="gitUrl" placeholder="Entrez l'URL Git" required />
+      </div>
+      <button nbButton status="success" type="submit" [disabled]="!projectForm.valid">Ajouter Projet</button>
     </form>
-    </nb-card-body>
-  </nb-card>
-  
+  </nb-card-body>
+</nb-card>
