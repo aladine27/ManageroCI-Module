@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from '../../../../models/project.model';
 import { ProjectService } from '../../../../services/project.service';
-import { NbToastrService } from '@nebular/theme';
+import { NbDialogService, NbDialogRef } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-project-mamagement',
@@ -11,9 +11,9 @@ import { NbToastrService } from '@nebular/theme';
 export class ProjectMamagementComponent implements OnInit {
   projects: Project[] = [];
 
-  constructor(private projectService: ProjectService,
-     private toastrService: NbToastrService
-
+  constructor(
+    private projectService: ProjectService,
+    private dialogService: NbDialogService // Inject Nebular Dialog Service
   ) { }
 
   ngOnInit(): void {
@@ -40,21 +40,19 @@ export class ProjectMamagementComponent implements OnInit {
   }
 
   
-    deleteProject(id: string): void {
-    this.projectService.deleteProject(id).subscribe(
-      () => {
-        this.toastrService.success('Projet supprimé avec succès', 'Succès');
-        this.loadProjects(); // Recharger la liste des projets après suppression
-      },
-      error => {
-        console.error('Error deleting project', error);
-        this.toastrService.danger('Erreur lors de la suppression du projet', 'Erreur');
-      }
-    );
-  }
   confirmDeleteProject(project: Project): void {
-    if (confirm(`Êtes-vous sûr de vouloir supprimer le projet ${project.name} ?`)) {
-      this.deleteProject(project.id);
+    const confirmation = window.confirm(`Are you sure you want to delete the project "${project.name}"?`);
+    if (confirmation) {
+      this.projectService.deleteProject(project.id).subscribe(
+        () => {
+          // Remove the deleted project from the list
+          this.projects = this.projects.filter(p => p.id !== project.id);
+          console.log('Project deleted successfully');
+        },
+        (error) => {
+          console.error('Error deleting project', error);
+        }
+      );
     }
   }
 }
