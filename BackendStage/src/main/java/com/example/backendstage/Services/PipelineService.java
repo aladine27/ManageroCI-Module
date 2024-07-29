@@ -17,6 +17,7 @@ import java.util.Optional;
 
 @Service
 public class PipelineService {
+
     @Autowired
     private PipelineRepository pipelineRepository;
 
@@ -31,23 +32,24 @@ public class PipelineService {
         return pipelineRepository.findById(id);
     }
 
-
-    public Pipeline createPipeline(Pipeline pipeline) {
+    public Pipeline createPipeline(Pipeline pipeline, List<String> stageIds) {
         // Sauvegarde du pipeline
         Pipeline savedPipeline = pipelineRepository.save(pipeline);
 
-        // Sauvegarde des stages
-        List<Stage> stages = savedPipeline.getStages();
-        if (stages != null && !stages.isEmpty()) {
-            for (Stage stage : stages) {
-                stage.setPipelineId(savedPipeline.getId()); // Assurez-vous que l'ID du pipeline est défini
-                stageRepository.save(stage);
+        // Mise à jour des stages pour les associer au pipeline
+        if (stageIds != null && !stageIds.isEmpty()) {
+            for (String stageId : stageIds) {
+                Optional<Stage> stageOpt = stageRepository.findById(stageId);
+                if (stageOpt.isPresent()) {
+                    Stage stage = stageOpt.get();
+                    stage.setPipelineId(savedPipeline.getId()); // Associe le stage au pipeline
+                    stageRepository.save(stage);
+                }
             }
         }
 
         return savedPipeline;
     }
-
 
     public Pipeline updatePipeline(String id, Pipeline pipeline) {
         pipeline.setId(id);

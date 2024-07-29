@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbLayoutModule, NbCardModule, NbStepperModule, NbAccordionModule, NbButtonModule } from '@nebular/theme'; // Import Nebular modules
 import { FormsModule } from '@angular/forms';
 import { DashboardCiGrp2RoutingModule } from './dashboard-ci-grp2-routing.module';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -12,6 +11,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProjectMamagementComponent } from './project-mamagement/project-mamagement.component';
 import { ProjectEditComponent } from './project-mamagement/project-edit/project-edit.component';
 import { ProjectAddComponent } from './project-mamagement/project-add/project-add.component';
+import { StageAddComponent } from './gestion-pipline/stage-add/stage-add.component';
+import { PiplineAddComponent } from './gestion-pipline/pipline-add/pipline-add.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { NbCardModule, NbFormFieldModule, NbInputModule, NbSelectModule, NbButtonModule, NbLayoutModule, NbStepperModule, NbAccordionModule } from '@nebular/theme';
 
 
 @NgModule({
@@ -22,6 +27,8 @@ import { ProjectAddComponent } from './project-mamagement/project-add/project-ad
     ProjectMamagementComponent,
     ProjectAddComponent,
     ProjectEditComponent,
+    StageAddComponent,
+    PiplineAddComponent,
   ],
   imports: [
     QuillModule.forRoot(),
@@ -32,9 +39,17 @@ import { ProjectAddComponent } from './project-mamagement/project-add/project-ad
     NbStepperModule,
     NbAccordionModule,
     NbButtonModule,
-     FormsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule,
+    NbSelectModule,
+    NbFormFieldModule,
+    NbInputModule,
 
-    ReactiveFormsModule
+    
+    
+
   ]
 })
 export class DashboardCiGrp2Module { 
