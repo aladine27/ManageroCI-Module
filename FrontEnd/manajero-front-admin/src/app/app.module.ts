@@ -16,6 +16,7 @@ import {
   NbChatModule,
   NbDatepickerModule,
   NbDialogModule,
+  NbLayoutModule,
   NbMenuModule,
   NbSidebarModule,
   NbToastrModule,
@@ -30,8 +31,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-      // autres modules ici
- 
     
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
@@ -44,6 +43,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    
+
   ],
   bootstrap: [AppComponent],
 })

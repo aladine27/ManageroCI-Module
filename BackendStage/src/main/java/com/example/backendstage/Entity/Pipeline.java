@@ -8,25 +8,22 @@ import java.util.List;
 public class Pipeline {
     @Id
     private String id;
-
-    public Pipeline(String id, String name, List<Stage> stages, String jenkinsJobUrl, String projectId) {
-        this.id = id;
-        this.name = name;
-        this.stages = stages;
-        this.jenkinsJobUrl = jenkinsJobUrl;
-        this.projectId = projectId;
-    }
-    public Pipeline() {
-        // Constructeur par défaut
-    }
-
-
     private String name;
-    private List<Stage> stages; // Liste d'objets Stage
+    private List<String> stageIds; // Liste des IDs des stages associés
     private String jenkinsJobUrl;
     private String projectId; // Référence au projet
 
-    // Getters et setters
+    public Pipeline(String id, String name, List<String> stageIds, String jenkinsJobUrl, String projectId) {
+        this.id = id;
+        this.name = name;
+        this.stageIds = stageIds;
+        this.jenkinsJobUrl = jenkinsJobUrl;
+        this.projectId = projectId;
+    }
+
+    public Pipeline() {
+    }
+
     public String getId() {
         return id;
     }
@@ -43,23 +40,12 @@ public class Pipeline {
         this.name = name;
     }
 
-    public List<Stage> getStages() {
-        return stages;
+    public List<String> getStageIds() {
+        return stageIds;
     }
 
-    public void setStages(List<Stage> stages) {
-        this.stages = stages;
-    }
-
-    @Override
-    public String toString() {
-        return "Pipeline{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", stages=" + stages +
-                ", jenkinsJobUrl='" + jenkinsJobUrl + '\'' +
-                ", projectId='" + projectId + '\'' +
-                '}';
+    public void setStageIds(List<String> stageIds) {
+        this.stageIds = stageIds;
     }
 
     public String getJenkinsJobUrl() {
@@ -78,4 +64,3 @@ public class Pipeline {
         this.projectId = projectId;
     }
 }
-
