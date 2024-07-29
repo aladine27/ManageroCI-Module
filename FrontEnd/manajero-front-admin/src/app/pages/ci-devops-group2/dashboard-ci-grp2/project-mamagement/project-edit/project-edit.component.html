@@ -4,19 +4,33 @@
     </nb-card-header>
     <nb-card-body>
         <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="name">Nom du Projet</label>
-                <input nbInput id="name" formControlName="name" placeholder="Entrez le nom du projet" required />
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea nbInput id="description" formControlName="description" placeholder="Entrez une description"
-                    rows="5" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="gitUrl">Git URL</label>
-                <input nbInput id="gitUrl" formControlName="gitUrl" placeholder="Entrez l'URL Git" required />
-            </div>
+            <nb-card>
+                <nb-card-body>
+                    <div class="form-group">
+                        <label for="name">Nom du Projet</label>
+                        <input nbInput fullWidth id="name" formControlName="name" placeholder="Entrez le nom du projet"
+                            required />
+                    </div>
+                </nb-card-body>
+            </nb-card>
+            <nb-card>
+                <nb-card-body>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea nbInput fullWidth id="description" formControlName="description"
+                            placeholder="Entrez une description" rows="5" required></textarea>
+                    </div>
+                </nb-card-body>
+            </nb-card>
+            <nb-card>
+                <nb-card-body>
+                    <div class="form-group">
+                        <label for="gitUrl">Git URL</label>
+                        <input nbInput fullWidth id="gitUrl" formControlName="gitUrl" placeholder="Entrez l'URL Git"
+                            required />
+                    </div>
+                </nb-card-body>
+            </nb-card>
             <button nbButton status="success" type="submit" [disabled]="!projectForm.valid">Modifier Projet</button>
         </form>
     </nb-card-body>
