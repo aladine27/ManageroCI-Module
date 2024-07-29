@@ -1,45 +1,30 @@
-<!-- <h1>Ajouter un Pipeline</h1>
-<form [formGroup]="pipelineForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="name">Nom du Pipeline</label>
-    <input id="name" formControlName="name" class="form-control" />
-    <div *ngIf="pipelineForm.controls.name.invalid && pipelineForm.controls.name.touched" class="text-danger">
-      Nom du pipeline est requis.
-    </div>
-  </div>
+<nb-card>
+  <nb-card-header>
+    <h3>Ajouter un Pipeline</h3>
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="pipelineForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Nom du Pipeline</label>
+        <input nbInput id="name" formControlName="name" placeholder="Entrez le nom du pipeline" required />
+        <nb-alert *ngIf="pipelineForm.get('name').invalid && pipelineForm.get('name').touched" status="danger">
+          Nom du pipeline est requis.
+        </nb-alert>
+      </div>
 
-  <div class="form-group">
-    <label for="stages">Stages</label>
-    <select id="stages" formControlName="stages" class="form-control" multiple>
-      <option *ngFor="let stage of stages" [value]="stage.id">
-        {{ stage.name }}
-      </option>
-    </select>
-  </div>
+      <div class="form-group">
+        <label for="stageIds">Stages</label>
+        <nb-select id="stageIds" formControlName="stageIds" placeholder="Sélectionnez les stages" multiple>
+          <nb-option *ngFor="let stage of stages" [value]="stage.id">
+            {{ stage.name }}
+          </nb-option>
+        </nb-select>
+        <nb-alert *ngIf="pipelineForm.get('stageIds').invalid && pipelineForm.get('stageIds').touched" status="danger">
+          Vous devez sélectionner au moins un stage.
+        </nb-alert>
+      </div>
 
-  <button type="submit" class="btn btn-primary">Créer Pipeline</button>
-</form> -->
-<h1>Ajouter un Pipeline</h1>
-<form [formGroup]="pipelineForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="name">Nom du Pipeline</label>
-    <input id="name" formControlName="name" class="form-control" />
-    <div *ngIf="pipelineForm.controls.name.invalid && pipelineForm.controls.name.touched" class="text-danger">
-      Nom du pipeline est requis.
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="stages">Stages</label>
-    <select id="stages" formControlName="stages" class="form-control" multiple>
-      <option *ngFor="let stage of stages" [value]="stage.id">
-        {{ stage.name }}
-      </option>
-    </select>
-    <div *ngIf="pipelineForm.controls.stages.invalid && pipelineForm.controls.stages.touched" class="text-danger">
-      Vous devez sélectionner au moins un stage.
-    </div>
-  </div>
-
-  <button type="submit" class="btn btn-primary">Créer Pipeline</button>
-</form>
+      <button nbButton status="success" type="submit" [disabled]="pipelineForm.invalid">Créer Pipeline</button>
+    </form>
+  </nb-card-body>
+</nb-card>

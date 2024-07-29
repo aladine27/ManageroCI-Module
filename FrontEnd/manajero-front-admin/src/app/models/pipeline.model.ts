@@ -1,7 +1,7 @@
-
 export interface Pipeline {
-    id?: string;
-    name: string;
-    stages?: string[]; // List of stage IDs or stage objects
-  }
-  
+  id?: string;
+  name: string;
+  stageIds: string[];
+  jenkinsJobUrl?: string;
+  projectId?: string;
+}

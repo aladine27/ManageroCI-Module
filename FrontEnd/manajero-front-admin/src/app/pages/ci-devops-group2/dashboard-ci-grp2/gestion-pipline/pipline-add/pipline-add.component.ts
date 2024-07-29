@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Stage } from '../../../../../models/stage.model';
+import { PipelineService } from '../../../../../services/pipeline.service';
 import { StageService } from '../../../../../services/stage.service';
 import { Router } from '@angular/router';
-import { PipelineService } from '../../../../../services/pipeline.service';
-import { Observable } from 'rxjs';
 import { NbToastrService } from '@nebular/theme';
-import { Pipeline } from '../../../../../models/pipeline.model';
+import { Stage } from '../../../../../models/stage.model';
 
 @Component({
   selector: 'ngx-pipline-add',
@@ -21,11 +19,12 @@ export class PiplineAddComponent implements OnInit {
     private fb: FormBuilder,
     private pipelineService: PipelineService,
     private stageService: StageService,
-    private router: Router
+    private router: Router,
+    private toastrService: NbToastrService
   ) {
     this.pipelineForm = this.fb.group({
       name: ['', Validators.required],
-      stages: [[], Validators.required] // Initialisation avec tableau vide et validation requise
+      stageIds: [[], Validators.required] // Initialisation avec tableau vide et validation requise
     });
   }
 
@@ -42,13 +41,16 @@ export class PiplineAddComponent implements OnInit {
 
   onSubmit(): void {
     if (this.pipelineForm.valid) {
-      const { name, stages } = this.pipelineForm.value;
-      this.pipelineService.createPipeline({ name, stages }).subscribe(
+      const pipeline = this.pipelineForm.value;
+      this.pipelineService.createPipeline(pipeline).subscribe(
         (response) => {
-          console.log('Pipeline créé avec succès', response);
+          this.toastrService.success('Pipeline créé avec succès', 'Succès');
           this.router.navigate(['/pipelines']);
         },
-        (error) => console.error('Erreur lors de la création du pipeline', error)
+        (error) => {
+          console.error('Erreur lors de la création du pipeline', error);
+          this.toastrService.danger('Erreur lors de la création du pipeline', 'Erreur');
+        }
       );
     }
   }
