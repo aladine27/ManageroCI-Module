@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NbCardModule, NbFormFieldModule, NbInputModule, NbSelectModule, NbButtonModule, NbLayoutModule, NbStepperModule, NbAccordionModule } from '@nebular/theme';
+import { BuildTriggerComponent } from './gestion-build/build-trigger/build-trigger.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { NbCardModule, NbFormFieldModule, NbInputModule, NbSelectModule, NbButto
     ProjectEditComponent,
     StageAddComponent,
     PiplineAddComponent,
+    BuildTriggerComponent,
   ],
   imports: [
     QuillModule.forRoot(),
