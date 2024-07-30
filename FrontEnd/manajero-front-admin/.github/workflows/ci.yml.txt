@@ -1,0 +1,25 @@
+name: CI Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to build'
+        required: true
+        default: 'main'
+      pipeline:
+        description: 'Pipeline to execute'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.branch }}
+      
+      - name: Run build
+        run: |
+          echo "Running pipeline ${inputs.pipeline} on branch ${inputs.branch}"
