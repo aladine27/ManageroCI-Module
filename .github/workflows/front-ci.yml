@@ -17,10 +17,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd front
+          cd FrontEnd/manajero-front-admin
           npm install
 
       - name: Run build
         run: |
-          cd front
+          cd FrontEnd/manajero-front-admin
           npm run build

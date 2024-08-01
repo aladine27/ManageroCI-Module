@@ -17,5 +17,5 @@ jobs:
 
       - name: Build with Maven
         run: |
-          cd back
+          cd BackendStage
           mvn clean install
