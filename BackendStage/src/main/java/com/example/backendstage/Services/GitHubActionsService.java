@@ -31,10 +31,7 @@ public class GitHubActionsService {
             headers.set("Authorization", "token " + token);
             headers.set("Accept", "application/vnd.github.v3+json");
 
-            String body = "{\"ref\": \"main\"}";
-
-            System.out.println("Triggering build with URL: " + workflowUrl);
-            System.out.println("Headers: " + headers.toString());
+            String body = "{\"ref\": \"main\"}"; // Assurez-vous que 'main' est la branche correcte
 
             HttpEntity<String> entity = new HttpEntity<>(body, headers);
             return restTemplate.exchange(workflowUrl, HttpMethod.POST, entity, String.class);
@@ -45,6 +42,7 @@ public class GitHubActionsService {
     }
 
     private String extractRepoPath(String gitUrl) {
+        // Assurez-vous que gitUrl est bien formaté
         return gitUrl.replace("https://github.com/", "").replace(".git", "");
     }
 }

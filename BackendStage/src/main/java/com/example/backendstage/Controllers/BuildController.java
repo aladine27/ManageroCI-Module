@@ -16,6 +16,7 @@ public class BuildController {
 
     private final GitHubActionsService gitHubActionsService;
 
+    @Autowired
     public BuildController(GitHubActionsService gitHubActionsService) {
         this.gitHubActionsService = gitHubActionsService;
     }
