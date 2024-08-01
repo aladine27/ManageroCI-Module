@@ -1,32 +1,28 @@
 package com.example.backendstage.Controllers;
 
 import com.example.backendstage.Entity.Build;
+import com.example.backendstage.Entity.Project;
+import com.example.backendstage.Repository.ProjectRepository;
 import com.example.backendstage.Services.GitHubActionsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.backendstage.Services.BuildService;
 
-
 @RestController
-@RequestMapping("/api/builds")
+@RequestMapping("/api/build")
 public class BuildController {
 
-    @Autowired
-    private GitHubActionsService gitHubActionsService;
+    private final GitHubActionsService gitHubActionsService;
 
     @Autowired
-    private BuildService buildService;
-
-    @PostMapping("/trigger")
-    public Build triggerBuild(@RequestBody Build build) {
-        build = buildService.save(build);
-        gitHubActionsService.triggerBuild(build);
-        return buildService.update(build);
+    public BuildController(GitHubActionsService gitHubActionsService) {
+        this.gitHubActionsService = gitHubActionsService;
     }
 
-    @PostMapping("/update-status")
-    public Build updateBuildStatus(@RequestBody Build build) {
-        gitHubActionsService.updateBuildStatus(build);
-        return buildService.update(build);
+    @PostMapping("/trigger")
+    public ResponseEntity<String> triggerBuild(@RequestBody Project project, @RequestParam String workflowFile) {
+        return gitHubActionsService.triggerBuild(project.getGitUrl(), project.getToken(), workflowFile);
     }
 }

@@ -17,20 +17,28 @@ public class Build {
     private String githubUrl;
     private String branch;
     private String token;
+    private String workflowId;
 
     public Build() {
     }
 
-    public Build(String id, String projectId, String status, String log, Date createdAt, Date updatedAt, String githubUrl, String branch, String token) {
+    public Build(String id, String projectId, String status, String log, Date createdAt, Date updatedAt, String branch, String githubUrl, String token, String workflowId) {
         this.id = id;
         this.projectId = projectId;
         this.status = status;
         this.log = log;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.githubUrl = githubUrl;
         this.branch = branch;
+        this.githubUrl = githubUrl;
         this.token = token;
+        this.workflowId = workflowId;
+    }
+
+    public Build(String projectId, String id, String workflowId) {
+        this.projectId = projectId;
+        this.id = id;
+        this.workflowId = workflowId;
     }
 
     public String getId() {
@@ -103,6 +111,14 @@ public class Build {
 
     public void setBranch(String branch) {
         this.branch = branch;
+    }
+
+    public String getWorkflowId() {
+        return workflowId;
+    }
+
+    public void setWorkflowId(String workflowId) {
+        this.workflowId = workflowId;
     }
 }
 

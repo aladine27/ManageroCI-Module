@@ -21,7 +21,9 @@ export class ProjectAddComponent implements OnInit {
     this.projectForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      gitUrl: ['', Validators.required]
+      gitUrl: ['', Validators.required],
+      token: ['', Validators.required]
+
     });
   }
 

@@ -1,21 +1,13 @@
-name: Backend CI Pipeline
+name: CI Workflow
 
-on: [push]
+on:
+  workflow_dispatch: # Permet le déclenchement manuel via l'API
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Set up JDK 11
-        uses: actions/setup-java@v1
-        with:
-          java-version: '11'
-
-      - name: Build with Maven
-        run: |
-          cd BackendStage
-          mvn clean install
+      - name: Run a script
+        run: echo "Hello, world!"
