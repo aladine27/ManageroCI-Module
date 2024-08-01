@@ -1,26 +1,25 @@
-name: Frontend CI Pipeline
+name: Frontend CI Build
 
-on: [push]
+on:
+  workflow_dispatch:   # Permet le déclenchement manuel via l'API
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '18'  # Assurez-vous que la version Node.js correspond à votre configuration
 
       - name: Install dependencies
-        run: |
-          cd FrontEnd/manajero-front-admin
-          npm install
+        run: npm install
 
-      - name: Run build
-        run: |
-          cd FrontEnd/manajero-front-admin
-          npm run build
+      - name: Build project
+        run: npm run build
+
+      # Ajoutez d'autres étapes selon vos besoins
