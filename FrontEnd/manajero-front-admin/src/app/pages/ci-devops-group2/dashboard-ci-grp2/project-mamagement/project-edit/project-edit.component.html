@@ -31,6 +31,20 @@
                     </div>
                 </nb-card-body>
             </nb-card>
+            <nb-card>
+                <nb-card-body>
+                    <div class="form-group">
+                        <label for="token">Git Token</label>
+                        <div class="input-group">
+                            <input nbInput fullWidth [type]="hideToken ? 'password' : 'text'" id="token"
+                                formControlName="token" placeholder="Entrez le token Git" required />
+                            <button type="button" nbButton (click)="toggleTokenVisibility()">
+                                <nb-icon [icon]="hideToken ? 'eye-outline' : 'eye-off-outline'"></nb-icon>
+                            </button>
+                        </div>
+                    </div>
+                </nb-card-body>
+            </nb-card>
             <button nbButton status="success" type="submit" [disabled]="!projectForm.valid">Modifier Projet</button>
         </form>
     </nb-card-body>

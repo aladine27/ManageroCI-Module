@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ProjectAddComponent implements OnInit {
   projectForm: FormGroup;
+   hideToken = true; 
 
   constructor(
     private fb: FormBuilder,
@@ -25,6 +26,9 @@ export class ProjectAddComponent implements OnInit {
       token: ['', Validators.required]
 
     });
+  }
+  toggleTokenVisibility(): void {
+    this.hideToken = !this.hideToken;
   }
 
   onSubmit(): void {

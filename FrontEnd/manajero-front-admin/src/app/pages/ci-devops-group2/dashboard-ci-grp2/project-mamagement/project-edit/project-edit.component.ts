@@ -12,6 +12,7 @@ import { Project } from '../../../../../models/project.model';
 export class ProjectEditComponent implements OnInit {
   projectForm: FormGroup;
   projectId: string;
+  hideToken = true; // Initial state to hide token
 
   constructor(
     private fb: FormBuilder,
@@ -22,23 +23,32 @@ export class ProjectEditComponent implements OnInit {
     this.projectForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      gitUrl: ['', [Validators.required, Validators.pattern('https?://.+')]]
+      gitUrl: ['', [Validators.required, Validators.pattern('https?://.+')]],
+      token: ['', Validators.required] // Include token field in the form
     });
   }
 
   ngOnInit(): void {
     this.projectId = this.route.snapshot.paramMap.get('id')!;
+    console.log('Project ID:', this.projectId);
     this.loadProjectDetails();
   }
 
   loadProjectDetails(): void {
     this.projectService.getProjectById(this.projectId).subscribe((project: Project) => {
+      console.log('Project data retrieved:', project); // Log project data
       this.projectForm.patchValue({
         name: project.name,
         description: project.description,
-        gitUrl: project.gitUrl
+        gitUrl: project.gitUrl,
+        token: project.token // Include token when patching
       });
+      console.log('Form values after patching:', this.projectForm.value); // Log form values
     });
+  }
+
+  toggleTokenVisibility(): void {
+    this.hideToken = !this.hideToken;
   }
 
   onSubmit(): void {

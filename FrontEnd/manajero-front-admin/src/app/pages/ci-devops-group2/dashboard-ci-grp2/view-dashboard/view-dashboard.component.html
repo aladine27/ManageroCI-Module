@@ -1,0 +1,33 @@
+<nb-card *ngIf="project">
+    <nb-card-header>
+        <h3>Détails du Projet</h3>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="form-group">
+            <label>Nom du Projet:</label>
+            <p>{{ project.name }}</p>
+        </div>
+        <div class="form-group">
+            <label>Description:</label>
+            <p>{{ project.description }}</p>
+        </div>
+        <div class="form-group">
+            <label>Git URL:</label>
+            <a [href]="project.gitUrl" target="_blank">{{ project.gitUrl }}</a>
+        </div>
+        <div class="form-group">
+            <label>Git Token:</label>
+            <p>{{ project.token }}</p>
+        </div>
+        <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/project-management">Retour</button>
+    </nb-card-body>
+</nb-card>
+
+<nb-card>
+    <nb-card-header>
+        <h3>Actions</h3>
+    </nb-card-header>
+    <nb-card-body>
+        <button nbButton status="success" (click)="buildProject()">Build</button>
+    </nb-card-body>
+</nb-card>

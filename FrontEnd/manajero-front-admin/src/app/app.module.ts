@@ -1,9 +1,3 @@
-/**
- * @license
- * Copyright Akveo. All Rights Reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- */
-
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -21,18 +15,22 @@ import {
   NbSidebarModule,
   NbToastrModule,
   NbWindowModule,
+  NbCardModule,
+  NbBadgeModule
 } from '@nebular/theme';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     
-    NbSidebarModule.forRoot(),
+    NbSidebarModule.forRoot(), // Import global de NbSidebarModule
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
     NbDialogModule.forRoot(),
@@ -41,12 +39,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
+    NbCardModule,
+    NbBadgeModule,
+    NbLayoutModule,
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
-    
-
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule { }

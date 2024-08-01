@@ -16,8 +16,9 @@ import { PiplineAddComponent } from './gestion-pipline/pipline-add/pipline-add.c
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { NbCardModule, NbFormFieldModule, NbInputModule, NbSelectModule, NbButtonModule, NbLayoutModule, NbStepperModule, NbAccordionModule } from '@nebular/theme';
+import { NbCardModule, NbFormFieldModule, NbInputModule, NbSelectModule, NbButtonModule, NbLayoutModule, NbStepperModule, NbAccordionModule, NbSidebarModule, NbIconModule, NbMenuModule, NbListModule } from '@nebular/theme';
 import { BuildTriggerComponent } from './gestion-build/build-trigger/build-trigger.component';
+import { ViewDashboardComponent } from './view-dashboard/view-dashboard.component';
 
 
 @NgModule({
@@ -31,6 +32,9 @@ import { BuildTriggerComponent } from './gestion-build/build-trigger/build-trigg
     StageAddComponent,
     PiplineAddComponent,
     BuildTriggerComponent,
+    ViewDashboardComponent,
+ 
+    
   ],
   imports: [
     QuillModule.forRoot(),
@@ -48,6 +52,13 @@ import { BuildTriggerComponent } from './gestion-build/build-trigger/build-trigg
     NbSelectModule,
     NbFormFieldModule,
     NbInputModule,
+     NbSidebarModule, 
+       NbCardModule,
+    NbLayoutModule,
+    NbSidebarModule,
+    NbIconModule,
+    NbMenuModule,
+    NbListModule,
 
     
     
