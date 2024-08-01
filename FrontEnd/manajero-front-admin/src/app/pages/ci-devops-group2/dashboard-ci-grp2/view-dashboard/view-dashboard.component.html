@@ -1,0 +1,43 @@
+<nb-layout>
+
+    <nb-sidebar>
+        <nb-card>
+            <nb-card-header>Actions</nb-card-header>
+            <nb-card-body>
+                <nb-list>
+                    <nb-list-item (click)="makeBuild()">Make Build</nb-list-item>
+                    <nb-list-item (click)="viewBuildHistory()">View Build History</nb-list-item>
+                </nb-list>
+            </nb-card-body>
+        </nb-card>
+    </nb-sidebar>
+
+    <nb-layout-column>
+        <nb-card>
+            <nb-card-header>Pipeline: My Application</nb-card-header>
+            <nb-card-body>
+                <div class="stages-container">
+                    <nb-card class="stage-card">
+                        <nb-card-header>Stage 1: Build</nb-card-header>
+                        <nb-card-body>
+                            <div class="stage-content">
+                                <nb-icon [icon]="getIcon(buildStatus)" [status]="getStatus(buildStatus)"></nb-icon>
+                                <span>{{ buildStatus | titlecase }}</span>
+                            </div>
+                        </nb-card-body>
+                    </nb-card>
+
+                    <nb-card class="stage-card">
+                        <nb-card-header>Stage 2: Test</nb-card-header>
+                        <nb-card-body>
+                            <div class="stage-content">
+                                <nb-icon [icon]="getIcon(testStatus)" [status]="getStatus(testStatus)"></nb-icon>
+                                <span>{{ testStatus | titlecase }}</span>
+                            </div>
+                        </nb-card-body>
+                    </nb-card>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>
