@@ -1,16 +1,11 @@
-name: CI Build
+name: Back CI Workflow
 
 on:
   workflow_dispatch:
-    inputs:
-      example-input:
-        description: 'An example input'
-        required: false
-        default: 'default-value'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo "Running CI build"
+      - run: echo "Running CI build for backend"
