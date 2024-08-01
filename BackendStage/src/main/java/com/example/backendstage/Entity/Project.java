@@ -9,6 +9,18 @@ public class Project {
     private String name;
     private String description;
     private String gitUrl;
+    private String token;  // Ajout du champ token
+
+    public Project() {
+    }
+
+    public Project(String id, String name, String description, String gitUrl, String token) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.gitUrl = gitUrl;
+        this.token = token;
+    }
 
     public String getId() {
         return id;
@@ -41,5 +53,12 @@ public class Project {
     public void setGitUrl(String gitUrl) {
         this.gitUrl = gitUrl;
     }
-// getters and setters
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }
