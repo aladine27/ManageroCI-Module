@@ -87,8 +87,11 @@ const routes: Routes = [{
        
         { path: 'admin/add-stage', component: StageAddComponent }, // New path for StageAddComponent
         { path: 'admin/add-pipline', component: PiplineAddComponent }, // New path for StageAddComponent
-        { path: 'viewdashboard/:projectId', component: ViewDashboardComponent },
-
+{
+  path: 'viewdashboard/:id',
+  component: ViewDashboardComponent
+},
+   
         { path: 'dashboard', component: WelcomeComponent }, // Define the route for adding tutorial here
         { path: 'edit-tutorial/:id', component: EditTutorialComponent, },
         { path: '', component: WelcomeComponent }, // Assuming 'WelcomeComponent' is the default path

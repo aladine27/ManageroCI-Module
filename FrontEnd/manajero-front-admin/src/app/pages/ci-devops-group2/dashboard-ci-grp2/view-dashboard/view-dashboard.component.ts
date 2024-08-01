@@ -1,39 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Project } from '../../../../models/project.model';
+import { ProjectService } from '../../../../services/project.service';
 
 @Component({
   selector: 'ngx-view-dashboard',
   templateUrl: './view-dashboard.component.html',
   styleUrls: ['./view-dashboard.component.scss']
 })
-export class ViewDashboardComponent {
-  buildStatus: string = 'pending'; // Remplacez avec la logique appropriée
-  testStatus: string = 'pending'; // Remplacez avec la logique appropriée
+export class ViewDashboardComponent implements OnInit {
+  projectId: string;
+  project: Project;
 
-  getIcon(status: string): string {
-    switch (status) {
-      case 'pending': return 'clock-outline';
-      case 'success': return 'checkmark-outline';
-      case 'failure': return 'close-outline';
-      default: return 'question-mark-outline';
-    }
+  constructor(
+    private route: ActivatedRoute,
+    private projectService: ProjectService
+  ) {}
+
+  ngOnInit(): void {
+    this.projectId = this.route.snapshot.paramMap.get('id')!;
+    this.loadProjectDetails();
   }
 
-  getStatus(status: string): string {
-    switch (status) {
-      case 'pending': return 'basic';
-      case 'success': return 'success';
-      case 'failure': return 'danger';
-      default: return 'info';
-    }
+  loadProjectDetails(): void {
+    this.projectService.getProjectById(this.projectId).subscribe((project: Project) => {
+      this.project = project;
+    });
   }
-
-  makeBuild(): void {
-    // Implémentez la logique pour démarrer un build
-    console.log('Make Build button clicked');
-  }
-
-  viewBuildHistory(): void {
-    // Implémentez la logique pour afficher l'historique des builds
-    console.log('View Build History button clicked');
+   buildProject(): void {
+    // Implémente ici la logique pour le bouton "Build"
+    console.log('Build action triggered for project ID:', this.projectId);
+    // Appelle le service approprié ou exécute la logique pour démarrer la construction
   }
 }
