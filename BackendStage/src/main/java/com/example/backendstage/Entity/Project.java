@@ -10,16 +10,36 @@ public class Project {
     private String description;
     private String gitUrl;
     private String token;  // Ajout du champ token
+    private String gitUsername; // New field for GitHub username
+    private String gitRepo;
 
     public Project() {
     }
 
-    public Project(String id, String name, String description, String gitUrl, String token) {
+    public Project(String id, String name, String description, String gitUrl, String token, String gitRepo, String gitUsername) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.gitUrl = gitUrl;
         this.token = token;
+        this.gitRepo = gitRepo;
+        this.gitUsername = gitUsername;
+    }
+
+    public String getGitUsername() {
+        return gitUsername;
+    }
+
+    public void setGitUsername(String gitUsername) {
+        this.gitUsername = gitUsername;
+    }
+
+    public String getGitRepo() {
+        return gitRepo;
+    }
+
+    public void setGitRepo(String gitRepo) {
+        this.gitRepo = gitRepo;
     }
 
     public String getId() {
