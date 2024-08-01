@@ -1,6 +1,7 @@
 name: Backend CI
 
 on:
+  workflow_dispatch: # Ajout du déclencheur pour les appels API manuels
   push:
     branches:
       - main
