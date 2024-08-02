@@ -1,11 +1,37 @@
+<!-- src/app/pages/ci-devops-group2/build-details/build-details.component.html -->
 <nb-card>
-    <nb-card-header>
-      <h3>Détails du Build</h3>
-    </nb-card-header>
-    <nb-card-body>
-      <p *ngIf="buildDetails">Status: {{ buildDetails.status }}</p>
-      <p *ngIf="buildDetails">Conclusion: {{ buildDetails.conclusion }}</p>
-      <p *ngIf="buildDetails">URL du Workflow: <a [href]="buildDetails.html_url" target="_blank">Voir le Workflow</a></p>
-    </nb-card-body>
-  </nb-card>
-  
+  <nb-card-header>
+    <h3>Détails du Build</h3>
+  </nb-card-header>
+  <nb-card-body>
+    <p *ngIf="buildDetails.length === 0">Aucun build disponible pour ce projet.</p>
+    <table *ngIf="buildDetails.length > 0" class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Numéro de Build</th>
+          <th>Nom</th>
+          <th>Branche</th>
+          <th>Status</th>
+          <th>Conclusion</th>
+          <th>URL du Workflow</th>
+          <th>Date de Création</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let build of buildDetails">
+          <td>{{ build.run_number }}</td>
+          <td>{{ build.name }}</td>
+          <td>{{ build.head_branch }}</td>
+          <td>{{ build.status }}</td>
+          <td>{{ build.conclusion }}</td>
+          <td><a [href]="build.html_url" target="_blank">Voir le Workflow</a></td>
+          <td>{{ build.created_at | date:'short' }}</td>
+            <td>
+              <button nbButton status="danger" (click)="deleteBuild(build.id)">Supprimer</button>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+    <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/project-management">Retour</button>
+  </nb-card-body>
+</nb-card>

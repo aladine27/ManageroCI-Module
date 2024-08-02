@@ -61,6 +61,14 @@ export class ProjectService {
   
     return this.http.get<any>(url, { headers: headers });
   }
-  
+deleteWorkflowRun(project: Project, buildId: number): Observable<any> {
+    const url = `https://api.github.com/repos/${project.gitUsername}/${project.gitRepo}/actions/runs/${buildId}`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${project.token}`,
+      'Accept': 'application/vnd.github.v3+json'
+    });
+
+    return this.http.delete<any>(url, { headers: headers });
+  }
 
 }

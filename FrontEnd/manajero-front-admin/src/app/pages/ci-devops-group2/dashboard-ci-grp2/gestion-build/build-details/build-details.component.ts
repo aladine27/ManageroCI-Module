@@ -11,7 +11,7 @@ import { Project } from '../../../../../models/project.model';
 export class BuildDetailsComponent implements OnInit {
   projectId: string;
   project: Project;
-  buildDetails: any; // Updated property name
+  buildDetails: any[] = []; // Array to store multiple build details
   showAlert: boolean = false;
   alertMessage: string = '';
   alertStatus: 'success' | 'danger' = 'success';
@@ -36,10 +36,10 @@ export class BuildDetailsComponent implements OnInit {
 
     this.projectService.getProjectById(this.projectId).subscribe(
       (project: Project) => {
-        console.log('Project ID:', this.projectId);  // Add this line to debug
+        console.log('Project ID:', this.projectId);  
 
         this.project = project;
-        this.loadWorkflowRuns(); // Ensure workflow runs are loaded
+        this.loadWorkflowRuns();
       },
       error => {
         console.error('Erreur lors de la récupération des détails du projet', error);
@@ -47,14 +47,12 @@ export class BuildDetailsComponent implements OnInit {
       }
     );
   }
-  
 
   loadWorkflowRuns(): void {
     this.projectService.getAllWorkflowRuns(this.project).subscribe(
       (response: any) => {
-        // Assuming `response.workflow_runs` contains the relevant details
         if (response.workflow_runs.length > 0) {
-          this.buildDetails = response.workflow_runs[0]; // Update according to your needs
+          this.buildDetails = response.workflow_runs; // Store all builds
         }
       },
       error => {
@@ -64,10 +62,24 @@ export class BuildDetailsComponent implements OnInit {
     );
   }
 
+  deleteBuild(buildId: number): void {
+    this.projectService.deleteWorkflowRun(this.project, buildId).subscribe(
+      response => {
+        // Remove the deleted build from the buildDetails array
+        this.buildDetails = this.buildDetails.filter(build => build.id !== buildId);
+        this.displayAlert('Build supprimé avec succès', 'success');
+      },
+      error => {
+        console.error('Erreur lors de la suppression du build', error);
+        this.displayAlert('Échec lors de la suppression du build', 'danger');
+      }
+    );
+  }
+
   displayAlert(message: string, status: 'success' | 'danger'): void {
     this.alertMessage = message;
     this.alertStatus = status;
     this.showAlert = true;
-    setTimeout(() => this.showAlert = false, 5000);  // L'alerte disparaît après 5 secondes
+    setTimeout(() => this.showAlert = false, 5000);
   }
 }
