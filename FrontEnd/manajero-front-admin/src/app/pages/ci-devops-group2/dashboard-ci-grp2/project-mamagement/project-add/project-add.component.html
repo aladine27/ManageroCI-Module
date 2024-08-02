@@ -43,6 +43,22 @@
           </div>
         </nb-card-body>
       </nb-card>
+      <nb-card>
+        <nb-card-body>
+          <div class="form-group">
+            <label for="gitUsername">Git Username</label>
+            <input nbInput fullWidth id="gitUsername" formControlName="gitUsername" placeholder="Entrez le Git Username" required />
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-card>
+        <nb-card-body>
+          <div class="form-group">
+            <label for="gitRepo">Git Repo</label>
+            <input nbInput fullWidth id="gitRepo" formControlName="gitRepo" placeholder="Entrez le Git Repo" required />
+          </div>
+        </nb-card-body>
+      </nb-card>
       <button nbButton status="success" type="submit" [disabled]="!projectForm.valid">Ajouter Projet</button>
     </form>
   </nb-card-body>

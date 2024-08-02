@@ -14,6 +14,7 @@ import { ProjectEditComponent } from './ci-devops-group2/dashboard-ci-grp2/proje
 import { StageAddComponent } from './ci-devops-group2/dashboard-ci-grp2/gestion-pipline/stage-add/stage-add.component';
 import { PiplineAddComponent } from './ci-devops-group2/dashboard-ci-grp2/gestion-pipline/pipline-add/pipline-add.component';
 import { ViewDashboardComponent } from './ci-devops-group2/dashboard-ci-grp2/view-dashboard/view-dashboard.component';
+import { BuildDetailsComponent } from './ci-devops-group2/dashboard-ci-grp2/gestion-build/build-details/build-details.component';
 
 const routes: Routes = [{
   path: '',
@@ -80,6 +81,8 @@ const routes: Routes = [{
       {
       path: 'agile/ci-devops-group2', // Make sure this matches your existing structure
       children: [
+        { path: 'view-build-details/:id', component: BuildDetailsComponent},
+
         { path: 'project-management/edit-project/:id', component: ProjectEditComponent },
         { path: 'add-tuto', component: AddTutoComponent },
         { path: 'project-management', component: ProjectMamagementComponent },
@@ -87,10 +90,8 @@ const routes: Routes = [{
        
         { path: 'admin/add-stage', component: StageAddComponent }, // New path for StageAddComponent
         { path: 'admin/add-pipline', component: PiplineAddComponent }, // New path for StageAddComponent
-{
-  path: 'viewdashboard/:id',
-  component: ViewDashboardComponent
-},
+        { path: 'viewdashboard/:id', component: ViewDashboardComponent },
+
    
         { path: 'dashboard', component: WelcomeComponent }, // Define the route for adding tutorial here
         { path: 'edit-tutorial/:id', component: EditTutorialComponent, },

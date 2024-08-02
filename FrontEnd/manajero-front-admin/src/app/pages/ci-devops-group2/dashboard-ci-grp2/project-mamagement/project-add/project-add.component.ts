@@ -23,7 +23,10 @@ export class ProjectAddComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       gitUrl: ['', Validators.required],
-      token: ['', Validators.required]
+      token: ['', Validators.required],
+      gitUsername: ['', Validators.required],
+      gitRepo: ['', Validators.required],
+
 
     });
   }

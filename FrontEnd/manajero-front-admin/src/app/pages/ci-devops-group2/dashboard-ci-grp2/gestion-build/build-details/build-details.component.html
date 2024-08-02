@@ -1,0 +1,11 @@
+<nb-card>
+    <nb-card-header>
+      <h3>Détails du Build</h3>
+    </nb-card-header>
+    <nb-card-body>
+      <p *ngIf="buildDetails">Status: {{ buildDetails.status }}</p>
+      <p *ngIf="buildDetails">Conclusion: {{ buildDetails.conclusion }}</p>
+      <p *ngIf="buildDetails">URL du Workflow: <a [href]="buildDetails.html_url" target="_blank">Voir le Workflow</a></p>
+    </nb-card-body>
+  </nb-card>
+  

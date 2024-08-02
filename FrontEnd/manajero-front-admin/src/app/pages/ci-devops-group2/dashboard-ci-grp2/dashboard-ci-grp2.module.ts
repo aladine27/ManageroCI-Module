@@ -16,9 +16,10 @@ import { PiplineAddComponent } from './gestion-pipline/pipline-add/pipline-add.c
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { NbCardModule, NbFormFieldModule, NbInputModule, NbSelectModule, NbButtonModule, NbLayoutModule, NbStepperModule, NbAccordionModule, NbSidebarModule, NbIconModule, NbMenuModule, NbListModule } from '@nebular/theme';
+import { NbCardModule, NbFormFieldModule, NbInputModule, NbSelectModule, NbButtonModule, NbLayoutModule, NbStepperModule, NbAccordionModule, NbSidebarModule, NbIconModule, NbMenuModule, NbListModule, NbToastrModule } from '@nebular/theme';
 import { BuildTriggerComponent } from './gestion-build/build-trigger/build-trigger.component';
 import { ViewDashboardComponent } from './view-dashboard/view-dashboard.component';
+import { BuildDetailsComponent } from './gestion-build/build-details/build-details.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { ViewDashboardComponent } from './view-dashboard/view-dashboard.componen
     PiplineAddComponent,
     BuildTriggerComponent,
     ViewDashboardComponent,
+    BuildDetailsComponent,
  
     
   ],
@@ -52,13 +54,12 @@ import { ViewDashboardComponent } from './view-dashboard/view-dashboard.componen
     NbSelectModule,
     NbFormFieldModule,
     NbInputModule,
-     NbSidebarModule, 
-       NbCardModule,
-    NbLayoutModule,
+    NbSidebarModule, 
     NbSidebarModule,
     NbIconModule,
     NbMenuModule,
     NbListModule,
+
 
     
     

@@ -29,5 +29,13 @@
     </nb-card-header>
     <nb-card-body>
         <button nbButton status="success" (click)="buildProject()">Build</button>
+        <button nbButton status="primary" (click)="viewBuildDetails(project.id)">View Build Details</button>
+
+        <nb-alert *ngIf="showAlert" [status]="alertStatus" (close)="showAlert=false">
+            {{ alertMessage }}
+        </nb-alert>
+     
     </nb-card-body>
 </nb-card>
+
+
