@@ -23,7 +23,8 @@ export class ProjectEditComponent implements OnInit {
     this.projectForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      gitUrl: ['', [Validators.required, Validators.pattern('https?://.+')]],
+      gitUrl: ['', [Validators.required]],
+      gitUsername: ['', [Validators.required]],
       token: ['', Validators.required] // Include token field in the form
     });
   }
@@ -41,6 +42,7 @@ export class ProjectEditComponent implements OnInit {
         name: project.name,
         description: project.description,
         gitUrl: project.gitUrl,
+        gitUsername: project.gitUsername,
         token: project.token // Include token when patching
       });
       console.log('Form values after patching:', this.projectForm.value); // Log form values

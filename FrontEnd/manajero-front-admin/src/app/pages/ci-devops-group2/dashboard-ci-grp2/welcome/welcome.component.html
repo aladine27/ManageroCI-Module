@@ -30,15 +30,14 @@
 
     <nb-card>
       <nb-card-body>
-        <h3>Welcome to the Dashboard!</h3>
-        <p>Welcome to our Continuous Integration Dashboard. Manage your projects efficiently.</p>
+        <h3>Déclanchez CI Devops!</h3>
+        <p>Maximiser l'efficacité de vos intégrations continues et maintenir la qualité de votre code à chaque étape du cycle de développement.</p>
         <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/project-management">Manage Projects</button>
-        <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/admin/add-stage">Manage Stages</button>
-        <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/admin/add-pipline">Manage
-          Pipelines</button>
+      
         
       </nb-card-body>
     </nb-card>
+
     
 
     <ng-container *ngFor="let tutorial of tutorials">
@@ -202,5 +201,15 @@
       </nb-card>
     </ng-container>
   <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/add-tuto">Add Tuto</button>
+
+  <nb-card>
+    <nb-card-body>
+      <p>Welcome to our Continuous Integration Dashboard. Manage your projects efficiently.</p>
+      <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/admin/add-stage">Manage Stages</button>
+      <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/admin/add-pipline">Manage
+        Pipelines</button>
+    </nb-card-body>
+  </nb-card>
+
   </nb-layout-column>
 </nb-layout>
