@@ -2,56 +2,55 @@ name: CI Workflow
 
 # Déclencheurs du workflow
 on:
-  push:                 # Déclenchement lors d'un push
-    branches:
-      - main            # Sur la branche principale
-  pull_request:         # Déclenchement lors d'une pull request
+  push:
     branches:
       - main
-  workflow_dispatch:    # Permet de déclencher manuellement le workflow
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
-# Définition des jobs
 jobs:
   build:
-    runs-on: ubuntu-latest  # Spécifie que le job tourne sur une machine Ubuntu
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2  # Action pour cloner le code du dépôt
+        uses: actions/checkout@v2
 
       - name: List files
-        run: ls -la  # Liste les fichiers pour vérifier la présence de pom.xml
+        run: ls -la  # Vérifiez la structure du dépôt
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v2  # Action pour installer Java
+        uses: actions/setup-java@v2
         with:
-          java-version: 17          # Spécifie la version de Java à utiliser
-          distribution: 'temurin'   # Distribution Java à utiliser
+          java-version: 17
+          distribution: 'temurin'
 
       - name: Build with Maven
-        run: mvn -B package --file pom.xml  # Commande pour construire le projet avec Maven
+        run: mvn -B package --file path/to/your/pom.xml  # Ajustez le chemin si nécessaire
 
       - name: Run tests
-        run: mvn test                       # Commande pour exécuter les tests
+        run: mvn test
 
       - name: Archive Artifacts
-        uses: actions/upload-artifact@v2   # Action pour sauvegarder les résultats de la construction
+        uses: actions/upload-artifact@v2
         with:
-          name: my-artifact                # Nom sous lequel l'artefact sera enregistré
-          path: target/                    # Chemin vers l'artefact à sauvegarder
+          name: my-artifact
+          path: target/
 
   sonarcloud:
-    runs-on: ubuntu-latest  # Spécifie que le job tourne sur une machine Ubuntu
-    needs: build            # Ce job dépend du job 'build'
+    runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2  # Action pour cloner le code du dépôt
+        uses: actions/checkout@v2
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v2  # Action pour installer Java
+        uses: actions/setup-java@v2
         with:
-          java-version: 17          # Spécifie la version de Java à utiliser
-          distribution: 'temurin'   # Distribution Java à utiliser
+          java-version: 17
+          distribution: 'temurin'
 
       - name: Cache SonarQube packages
         uses: actions/cache@v2
@@ -63,6 +62,6 @@ jobs:
 
       - name: Run SonarQube Scan
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Le token GitHub
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Le token SonarQube
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn sonar:sonar
