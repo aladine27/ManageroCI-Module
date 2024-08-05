@@ -23,6 +23,7 @@ jobs:
         uses: actions/setup-java@v2  # Action pour installer Java
         with:
           java-version: 17          # Spécifie la version de Java à utiliser
+          distribution: 'temurin'   # Distribution Java à utiliser
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml  # Commande pour construire le projet avec Maven
@@ -46,8 +47,8 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v2  # Action pour installer Java
         with:
-          java-version: 17   
-          distribution: 'temurin'       # Spécifie la version de Java à utiliser
+          java-version: 17          # Spécifie la version de Java à utiliser
+          distribution: 'temurin'   # Distribution Java à utiliser
 
       - name: Cache SonarQube packages
         uses: actions/cache@v2
@@ -60,5 +61,5 @@ jobs:
       - name: Run SonarQube Scan
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Le token GitHub
-          SONAR_TOKEN: 695dd7f6d29c13e88d13028536406fcef25f3173  # Le token SonarQube
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Le token SonarQube
         run: mvn sonar:sonar
