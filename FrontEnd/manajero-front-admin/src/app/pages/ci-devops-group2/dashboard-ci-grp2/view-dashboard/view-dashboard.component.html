@@ -30,12 +30,21 @@
     <nb-card-body>
         <button nbButton status="success" (click)="buildProject()">Build</button>
         <button nbButton status="primary" (click)="viewBuildDetails(project.id)">View Build Details</button>
+        <button nbButton status="info" (click)="checkCodeQuality()">Check Code Quality</button>
 
         <nb-alert *ngIf="showAlert" [status]="alertStatus" (close)="showAlert=false">
             {{ alertMessage }}
         </nb-alert>
-     
     </nb-card-body>
 </nb-card>
 
-
+<nb-card *ngIf="sonarReport">
+    <nb-card-header>
+        <h3>Code Quality Report</h3>
+    </nb-card-header>
+    <nb-card-body>
+        <div *ngFor="let metric of sonarReport.metrics">
+            <p>{{ metric.metric }}: {{ metric.value }}</p>
+        </div>
+    </nb-card-body>
+</nb-card>

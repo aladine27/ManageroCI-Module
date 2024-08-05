@@ -12,7 +12,8 @@ import { HttpClient } from '@angular/common/http';
 export class ViewDashboardComponent implements OnInit {
   projectId: string;
   project: Project;
-  buildResult: any; 
+  buildResult: any;
+  sonarReport: any;
   showAlert: boolean = false;
   alertMessage: string = '';
   alertStatus: 'success' | 'danger' = 'success';
@@ -22,8 +23,6 @@ export class ViewDashboardComponent implements OnInit {
     private projectService: ProjectService,
     private http: HttpClient,
     private router: Router
-
-    
   ) {}
 
   ngOnInit(): void {
@@ -59,7 +58,6 @@ export class ViewDashboardComponent implements OnInit {
       error => {
         console.error('Erreur lors du déclenchement du workflow', error);
         this.displayAlert('Échec lors du déclenchement du workflow', 'danger');
-
       }
     );
   }
@@ -68,16 +66,28 @@ export class ViewDashboardComponent implements OnInit {
     this.alertMessage = message;
     this.alertStatus = status;
     this.showAlert = true;
-    setTimeout(() => this.showAlert = false, 5000);  // L'alerte disparaît après 5 secondes
+    setTimeout(() => this.showAlert = false, 5000);
   }
   
   viewBuildDetails(projectId: string): void {
     this.router.navigate(['/pages/agile/ci-devops-group2/view-build-details', projectId]);
   }
-  
-  
-  getBuildStatus(): void {
-    // Cette fonction devra récupérer le statut du dernier build déclenché
-    // Utilisez un intervalle ou un autre mécanisme pour interroger les résultats
+
+  checkCodeQuality(): void {
+    const url = `https://sonarcloud.io/api/measures/component?component=${this.project.gitRepo}&metricKeys=coverage,bugs,vulnerabilities,code_smells,duplicated_lines_density`;
+    const headers = {
+      'Authorization': `Bearer ${this.project.token}`
+    };
+
+    this.http.get(url, { headers: headers }).subscribe(
+      response => {
+        this.sonarReport = response;
+        console.log('Rapport SonarQube:', response);
+      },
+      error => {
+        console.error('Erreur lors de la récupération du rapport SonarQube', error);
+        this.displayAlert('Échec lors de la récupération du rapport SonarQube', 'danger');
+      }
+    );
   }
 }
