@@ -46,7 +46,8 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v2  # Action pour installer Java
         with:
-          java-version: 17          # Spécifie la version de Java à utiliser
+          java-version: 17   
+          distribution: 'temurin'       # Spécifie la version de Java à utiliser
 
       - name: Cache SonarQube packages
         uses: actions/cache@v2
