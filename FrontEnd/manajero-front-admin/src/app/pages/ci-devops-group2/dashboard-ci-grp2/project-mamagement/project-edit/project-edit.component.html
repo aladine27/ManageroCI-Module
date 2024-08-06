@@ -43,6 +43,20 @@
             </div>
           </nb-card-body>
         </nb-card>
+        <nb-card>
+            <nb-card-body>
+              <div class="form-group">
+                <label for="sonarToken">SonarQube Token</label>
+                <div class="input-group">
+                  <input nbInput fullWidth [type]="hideSonarToken ? 'password' : 'text'" id="sonarToken" formControlName="sonarToken"
+                    placeholder="Entrez le token SonarQube" required />
+                  <button type="button" nbButton (click)="toggleSonarTokenVisibility()">
+                    <nb-icon [icon]="hideSonarToken ? 'eye-outline' : 'eye-off-outline'"></nb-icon>
+                  </button>
+                </div>
+              </div>
+            </nb-card-body>
+          </nb-card>
         <button nbButton status="success" type="submit" [disabled]="!projectForm.valid">Mettre à jour Projet</button>
       </form>
     </nb-card-body>
