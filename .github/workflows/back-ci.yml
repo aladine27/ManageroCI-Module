@@ -31,10 +31,10 @@ jobs:
         run: mvn clean --file BackendStage/pom.xml
 
       - name: Build with Maven
-        run: mvn -B package --file BackendStage/pom.xml
+        run: mvn -e -X package --file BackendStage/pom.xml
 
-      - name: Run tests with debug
-        run: mvn -X test
+      - name: Run tests
+        run: mvn test --file BackendStage/pom.xml
 
       - name: Archive Artifacts
         uses: actions/upload-artifact@v2
