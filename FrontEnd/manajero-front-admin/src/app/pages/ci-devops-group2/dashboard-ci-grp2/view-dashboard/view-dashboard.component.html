@@ -16,8 +16,22 @@
             <a [href]="project.gitUrl" target="_blank">{{ project.gitUrl }}</a>
         </div>
         <div class="form-group">
+            <label>Git Username:</label>
+            <p>{{ project.gitUsername }}</p>
+        </div>
+        <div class="form-group">
+            <label>Git Repo:</label>
+            <p>{{ project.gitRepo }}</p>
+        </div>
+        <div class="form-group">
             <label>Git Token:</label>
             <p>{{ project.token }}</p>
+        </div>
+        <div class="form-group">
+            <label>Branch:</label>
+            <nb-select [(selected)]="selectedBranch">
+                <nb-option *ngFor="let branch of branches" [value]="branch">{{ branch }}</nb-option>
+            </nb-select>
         </div>
         <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/project-management">Retour</button>
     </nb-card-body>

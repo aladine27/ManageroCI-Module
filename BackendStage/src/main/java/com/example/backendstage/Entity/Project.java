@@ -72,6 +72,17 @@ public class Project {
 
     public void setGitUrl(String gitUrl) {
         this.gitUrl = gitUrl;
+        extractGitUsernameAndRepo();
+    }
+    private void extractGitUsernameAndRepo() {
+        // URL : https://github.com/username/repo
+        if (gitUrl != null && gitUrl.startsWith("https://github.com/")) {
+            String[] parts = gitUrl.replace("https://github.com/", "").split("/");
+            if (parts.length == 2) {
+                this.gitUsername = parts[0];
+                this.gitRepo = parts[1];
+            }
+        }
     }
 
     public String getToken() {

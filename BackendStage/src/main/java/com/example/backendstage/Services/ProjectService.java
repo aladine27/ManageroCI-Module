@@ -34,6 +34,7 @@ public class ProjectService {
     public Project updateProject(String id, Project project) {
         if (projectRepository.existsById(id)) {
             project.setId(id);
+            project.setGitUrl(project.getGitUrl());
             return projectRepository.save(project);
         } else {
             return null;

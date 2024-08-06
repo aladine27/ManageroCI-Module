@@ -24,7 +24,6 @@ export class ProjectEditComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       gitUrl: ['', [Validators.required]],
-      gitUsername: ['', [Validators.required]],
       token: ['', Validators.required] // Include token field in the form
     });
   }
@@ -42,7 +41,6 @@ export class ProjectEditComponent implements OnInit {
         name: project.name,
         description: project.description,
         gitUrl: project.gitUrl,
-        gitUsername: project.gitUsername,
         token: project.token // Include token when patching
       });
       console.log('Form values after patching:', this.projectForm.value); // Log form values
@@ -55,7 +53,13 @@ export class ProjectEditComponent implements OnInit {
 
   onSubmit(): void {
     if (this.projectForm.valid) {
-      this.projectService.updateProject(this.projectId, this.projectForm.value).subscribe(
+      const formValue = this.projectForm.value;
+      const project = {
+        ...formValue,
+        ...this.extractGitUsernameAndRepo(formValue.gitUrl) // Extract gitUsername and gitRepo
+      };
+
+      this.projectService.updateProject(this.projectId, project).subscribe(
         response => {
           console.log('Projet mis à jour avec succès', response);
           this.router.navigate(['/pages/agile/ci-devops-group2/project-management']);
@@ -65,5 +69,15 @@ export class ProjectEditComponent implements OnInit {
         }
       );
     }
+  }
+
+  private extractGitUsernameAndRepo(gitUrl: string): { gitUsername: string, gitRepo: string } {
+    if (gitUrl.startsWith('https://github.com/')) {
+      const parts = gitUrl.replace('https://github.com/', '').split('/');
+      if (parts.length === 2) {
+        return { gitUsername: parts[0], gitRepo: parts[1] };
+      }
+    }
+    return { gitUsername: '', gitRepo: '' };
   }
 }
