@@ -28,7 +28,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Maven
-        run: mvn -B package --file :/Users/MSI/Desktop/GestionPiplineFix/ManageroCI-Module/BackendStage/pom.xml  # Ajustez le chemin si nécessaire
+        run: mvn -B package --file BackendStage/pom.xml
 
       - name: Run tests
         run: mvn test
