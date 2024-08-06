@@ -38,13 +38,6 @@ jobs:
       - name: Run tests
         run: mvn test --file BackendStage/pom.xml
         
-      - name: SonarQube Scan
-        uses: sonarsource/sonarcloud-action@v2
-        with:
-          args: sonar-scanner
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    
       - name: Archive Artifacts
         uses: actions/upload-artifact@v2
         with:
