@@ -15,6 +15,8 @@ import { StageAddComponent } from './ci-devops-group2/dashboard-ci-grp2/gestion-
 import { PiplineAddComponent } from './ci-devops-group2/dashboard-ci-grp2/gestion-pipline/pipline-add/pipline-add.component';
 import { ViewDashboardComponent } from './ci-devops-group2/dashboard-ci-grp2/view-dashboard/view-dashboard.component';
 import { BuildDetailsComponent } from './ci-devops-group2/dashboard-ci-grp2/gestion-build/build-details/build-details.component';
+import { KpiDashboardComponent } from './ci-devops-group2/dashboard-ci-grp2/kpi-dashboard/kpi-dashboard.component';
+
 
 const routes: Routes = [{
   path: '',
@@ -92,7 +94,7 @@ const routes: Routes = [{
         { path: 'admin/add-pipline', component: PiplineAddComponent }, // New path for StageAddComponent
         { path: 'viewdashboard/:id', component: ViewDashboardComponent },
 
-   
+   { path: 'kpi-dashboard', component: KpiDashboardComponent },
         { path: 'dashboard', component: WelcomeComponent }, // Define the route for adding tutorial here
         { path: 'edit-tutorial/:id', component: EditTutorialComponent, },
         { path: '', component: WelcomeComponent }, // Assuming 'WelcomeComponent' is the default path

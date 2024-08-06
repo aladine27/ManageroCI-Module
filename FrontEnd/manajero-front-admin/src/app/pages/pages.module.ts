@@ -13,6 +13,8 @@ import { DashboardCiGrp2Module } from './ci-devops-group2/dashboard-ci-grp2/dash
 import { BuildDetailsComponent } from './agile/ci-devops-group2/build-details/build-details.component';
 
 
+
+
 @NgModule({
   imports: [
     PagesRoutingModule,
@@ -21,12 +23,14 @@ import { BuildDetailsComponent } from './agile/ci-devops-group2/build-details/bu
     DashboardModule,
     ECommerceModule,
     MiscellaneousModule,
-    DashboardCiGrp2Module
+   
   ],
   declarations: [
+   
+   
     PagesComponent,
     BuildDetailsComponent,
-    // EditTutorialComponent, // Remove this line
+   
   ],
 })
 export class PagesModule {}
