@@ -39,7 +39,8 @@ jobs:
         run: mvn test --file BackendStage/pom.xml
       
       - name: Run SonarQube analysis
-        run: mvn sonar:sonar -f BackendStage/pom.xml
+        run: mvn sonar:sonar -X -f BackendStage/pom.xml
+      
       
       - name: Archive Artifacts
         uses: actions/upload-artifact@v2
