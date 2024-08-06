@@ -27,11 +27,14 @@ jobs:
           java-version: 17
           distribution: 'temurin'
 
+      - name: Clean Maven cache
+        run: mvn clean
+        
       - name: Build with Maven
         run: mvn -B package --file BackendStage/pom.xml
 
-      - name: Run tests
-        run: mvn test
+      - name: Run tests with debug
+        run: mvn -X test
 
       - name: Archive Artifacts
         uses: actions/upload-artifact@v2
