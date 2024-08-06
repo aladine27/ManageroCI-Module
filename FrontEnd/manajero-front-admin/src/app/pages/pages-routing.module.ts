@@ -8,6 +8,13 @@ import { NotFoundComponent } from './miscellaneous/not-found/not-found.component
 import { WelcomeComponent } from './ci-devops-group2/dashboard-ci-grp2/welcome/welcome.component';
 import { EditTutorialComponent } from './ci-devops-group2/dashboard-ci-grp2/edit-tutorial/edit-tutorial.component';
 import { AddTutoComponent } from './ci-devops-group2/dashboard-ci-grp2/add-tuto/add-tuto.component';
+import { ProjectMamagementComponent } from './ci-devops-group2/dashboard-ci-grp2/project-mamagement/project-mamagement.component';
+import { ProjectAddComponent } from './ci-devops-group2/dashboard-ci-grp2/project-mamagement/project-add/project-add.component';
+import { ProjectEditComponent } from './ci-devops-group2/dashboard-ci-grp2/project-mamagement/project-edit/project-edit.component';
+import { StageAddComponent } from './ci-devops-group2/dashboard-ci-grp2/gestion-pipline/stage-add/stage-add.component';
+import { PiplineAddComponent } from './ci-devops-group2/dashboard-ci-grp2/gestion-pipline/pipline-add/pipline-add.component';
+import { ViewDashboardComponent } from './ci-devops-group2/dashboard-ci-grp2/view-dashboard/view-dashboard.component';
+import { BuildDetailsComponent } from './ci-devops-group2/dashboard-ci-grp2/gestion-build/build-details/build-details.component';
 
 const routes: Routes = [{
   path: '',
@@ -74,11 +81,24 @@ const routes: Routes = [{
       {
       path: 'agile/ci-devops-group2', // Make sure this matches your existing structure
       children: [
-         { path: 'add-tuto', component: AddTutoComponent },
+        { path: 'view-build-details/:id', component: BuildDetailsComponent},
+
+        { path: 'project-management/edit-project/:id', component: ProjectEditComponent },
+        { path: 'add-tuto', component: AddTutoComponent },
+        { path: 'project-management', component: ProjectMamagementComponent },
+        { path: 'project-management/add-project', component: ProjectAddComponent },
+       
+        { path: 'admin/add-stage', component: StageAddComponent }, // New path for StageAddComponent
+        { path: 'admin/add-pipline', component: PiplineAddComponent }, // New path for StageAddComponent
+        { path: 'viewdashboard/:id', component: ViewDashboardComponent },
+
+   
         { path: 'dashboard', component: WelcomeComponent }, // Define the route for adding tutorial here
         { path: 'edit-tutorial/:id', component: EditTutorialComponent, },
         { path: '', component: WelcomeComponent }, // Assuming 'WelcomeComponent' is the default path
         { path: '**', component: NotFoundComponent }, // Handle 404 errors
+
+
       ]
     },
 

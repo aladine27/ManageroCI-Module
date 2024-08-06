@@ -28,6 +28,18 @@
       </div>
     </ng-container>
 
+    <nb-card>
+      <nb-card-body>
+        <h3>Déclanchez CI Devops!</h3>
+        <p>Maximiser l'efficacité de vos intégrations continues et maintenir la qualité de votre code à chaque étape du cycle de développement.</p>
+        <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/project-management">Manage Projects</button>
+      
+        
+      </nb-card-body>
+    </nb-card>
+
+    
+
     <ng-container *ngFor="let tutorial of tutorials">
       <nb-card accent="info" *ngIf="tutorial.id === '668e5bc69a34fd0b07944ec0'">
         <nb-card-header>{{ tutorial.titre }}</nb-card-header>
@@ -189,5 +201,15 @@
       </nb-card>
     </ng-container>
   <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/add-tuto">Add Tuto</button>
+
+  <nb-card>
+    <nb-card-body>
+      <p>Welcome to our Continuous Integration Dashboard. Manage your projects efficiently.</p>
+      <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/admin/add-stage">Manage Stages</button>
+      <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/admin/add-pipline">Manage
+        Pipelines</button>
+    </nb-card-body>
+  </nb-card>
+
   </nb-layout-column>
 </nb-layout>

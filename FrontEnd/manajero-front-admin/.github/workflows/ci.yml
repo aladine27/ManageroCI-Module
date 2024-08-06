@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to build'
+        required: true
+        default: 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build
+      run: |
+        echo "Building branch ${{ github.event.inputs.branch }}"
