@@ -28,8 +28,8 @@ jobs:
           distribution: 'temurin'
 
       - name: Clean Maven cache
-        run: mvn clean
-        
+        run: mvn clean --file BackendStage/pom.xml
+
       - name: Build with Maven
         run: mvn -B package --file BackendStage/pom.xml
 
