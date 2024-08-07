@@ -10,7 +10,7 @@ import { Project } from '../../../../../models/project.model';
   styleUrls: ['./project-edit.component.scss']
 })
 export class ProjectEditComponent implements OnInit {
-  projectForm: FormGroup;
+  editProjectForm: FormGroup;
   projectId: string;
   hideToken = true; // Initial state to hide token
   hideSonarToken = true; // Initial state to hide sonarToken
@@ -21,7 +21,7 @@ export class ProjectEditComponent implements OnInit {
     private router: Router,
     private projectService: ProjectService
   ) {
-    this.projectForm = this.fb.group({
+    this.editProjectForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       gitUrl: ['', [Validators.required]],
@@ -39,14 +39,14 @@ export class ProjectEditComponent implements OnInit {
   loadProjectDetails(): void {
     this.projectService.getProjectById(this.projectId).subscribe((project: Project) => {
       console.log('Project data retrieved:', project); // Log project data
-      this.projectForm.patchValue({
+      this.editProjectForm.patchValue({
         name: project.name,
         description: project.description,
         gitUrl: project.gitUrl,
         token: project.token,
         sonarToken: project.sonarToken // Include sonarToken when patching
       });
-      console.log('Form values after patching:', this.projectForm.value); // Log form values
+      console.log('Form values after patching:', this.editProjectForm.value); // Log form values
     });
   }
 
@@ -59,8 +59,8 @@ export class ProjectEditComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.projectForm.valid) {
-      const formValue = this.projectForm.value;
+    if (this.editProjectForm.valid) {
+      const formValue = this.editProjectForm.value;
       const project = {
         ...formValue,
         ...this.extractGitUsernameAndRepo(formValue.gitUrl) // Extract gitUsername and gitRepo

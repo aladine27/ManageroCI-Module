@@ -21,6 +21,7 @@ import { BuildTriggerComponent } from './gestion-build/build-trigger/build-trigg
 import { ViewDashboardComponent } from './view-dashboard/view-dashboard.component';
 import { BuildDetailsComponent } from './gestion-build/build-details/build-details.component';
 import { KpiDashboardComponent } from './kpi-dashboard/kpi-dashboard.component';
+import { ProjectFormFieldsComponent } from './project-mamagement/project-form-fields/project-form-fields.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { KpiDashboardComponent } from './kpi-dashboard/kpi-dashboard.component';
     BuildTriggerComponent,
     ViewDashboardComponent,
     BuildDetailsComponent,
-   KpiDashboardComponent
+   KpiDashboardComponent,
+   ProjectFormFieldsComponent
 
    
  
