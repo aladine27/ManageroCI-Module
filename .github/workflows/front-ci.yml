@@ -1,0 +1,25 @@
+name: Frontend CI Build
+
+on:
+  workflow_dispatch:   # Permet le déclenchement manuel via l'API
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Assurez-vous que la version Node.js correspond à votre configuration
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      # Ajoutez d'autres étapes selon vos besoins

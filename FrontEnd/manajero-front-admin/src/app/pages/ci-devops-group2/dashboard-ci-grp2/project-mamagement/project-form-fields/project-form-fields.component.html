@@ -1,0 +1,54 @@
+<nb-card>
+    <nb-card-body>
+      <div class="form-group">
+        <label for="name">Nom du Projet</label>
+        <input nbInput fullWidth id="name" formControlName="name" placeholder="Entrez le nom du projet" required />
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <nb-card>
+    <nb-card-body>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea nbInput fullWidth id="description" formControlName="description"
+          placeholder="Entrez une description" rows="5" required></textarea>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <nb-card>
+    <nb-card-body>
+      <div class="form-group">
+        <label for="gitUrl">Git URL</label>
+        <input nbInput fullWidth id="gitUrl" formControlName="gitUrl" placeholder="Entrez l'URL Git" required />
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <nb-card>
+    <nb-card-body>
+      <div class="form-group">
+        <label for="token">Git Token</label>
+        <div class="input-group">
+          <input nbInput fullWidth [type]="hideToken ? 'password' : 'text'" id="token" formControlName="token"
+            placeholder="Entrez le token Git" required />
+          <button type="button" nbButton (click)="toggleTokenVisibility()">
+            <nb-icon [icon]="hideToken ? 'eye-outline' : 'eye-off-outline'"></nb-icon>
+          </button>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <nb-card>
+    <nb-card-body>
+      <div class="form-group">
+        <label for="sonarToken">Sonar Token</label>
+        <div class="input-group">
+          <input nbInput fullWidth [type]="hideSonarToken ? 'password' : 'text'" id="sonarToken" formControlName="sonarToken"
+            placeholder="Entrez le token Sonar" required />
+          <button type="button" nbButton (click)="toggleSonarTokenVisibility()">
+            <nb-icon [icon]="hideSonarToken ? 'eye-outline' : 'eye-off-outline'"></nb-icon>
+          </button>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  

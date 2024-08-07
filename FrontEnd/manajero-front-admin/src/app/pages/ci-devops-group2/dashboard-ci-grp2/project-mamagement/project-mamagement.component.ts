@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from '../../../../models/project.model';
 import { ProjectService } from '../../../../services/project.service';
+import { NbDialogService, NbDialogRef } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-project-mamagement',
@@ -10,7 +11,10 @@ import { ProjectService } from '../../../../services/project.service';
 export class ProjectMamagementComponent implements OnInit {
   projects: Project[] = [];
 
-  constructor(private projectService: ProjectService) { }
+  constructor(
+    private projectService: ProjectService,
+    private dialogService: NbDialogService // Inject Nebular Dialog Service
+  ) { }
 
   ngOnInit(): void {
     this.loadProjects();
@@ -35,7 +39,20 @@ export class ProjectMamagementComponent implements OnInit {
     // Logic to open the edit modal
   }
 
+  
   confirmDeleteProject(project: Project): void {
-    // Logic to confirm and delete the project
+    const confirmation = window.confirm(`Are you sure you want to delete the project "${project.name}"?`);
+    if (confirmation) {
+      this.projectService.deleteProject(project.id).subscribe(
+        () => {
+          // Remove the deleted project from the list
+          this.projects = this.projects.filter(p => p.id !== project.id);
+          console.log('Project deleted successfully');
+        },
+        (error) => {
+          console.error('Error deleting project', error);
+        }
+      );
+    }
   }
 }

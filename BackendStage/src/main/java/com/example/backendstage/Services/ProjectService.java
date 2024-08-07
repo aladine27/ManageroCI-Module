@@ -27,6 +27,7 @@ public class ProjectService {
 
     // POST create a new project
     public Project createProject(Project project) {
+
         return projectRepository.save(project);
     }
 
@@ -34,6 +35,7 @@ public class ProjectService {
     public Project updateProject(String id, Project project) {
         if (projectRepository.existsById(id)) {
             project.setId(id);
+            project.setGitUrl(project.getGitUrl());
             return projectRepository.save(project);
         } else {
             return null;

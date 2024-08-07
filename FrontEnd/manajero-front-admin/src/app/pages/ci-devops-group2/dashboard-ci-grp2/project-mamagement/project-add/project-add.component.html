@@ -1,25 +1,63 @@
-<!-- src/app/pages/ci-devops-group2/dashboard-ci-grp2/project-mamagement/project-add/project-add.component.html -->
-
 <nb-card>
-    <nb-card-header>
-      <h3>Ajouter un Nouveau Projet</h3>
-    </nb-card-header>
-    <nb-card-body>
-      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="name">Nom du Projet</label>
-          <input nbInput id="name" formControlName="name" required />
-        </div>
-        <div class="form-group">
-          <label for="description">Description</label>
-          <textarea nbInput id="description" formControlName="description" required></textarea>
-        </div>
-        <div class="form-group">
-          <label for="gitUrl">Git URL</label>
-          <input nbInput id="gitUrl" formControlName="gitUrl" required />
-        </div>
-        <button nbButton status="success" type="submit" [disabled]="!projectForm.valid">Ajouter Projet</button>
+  <nb-card-header>
+    <h3>Ajouter Un Projet</h3>
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+      <nb-card class="add-project-form">
+        <nb-card-body>
+          <div class="form-group">
+            <label for="name">Nom du Projet</label>
+            <input nbInput fullWidth id="name" formControlName="name" placeholder="Enter project name" required />
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-card class="add-project-form">
+        <nb-card-body>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea nbInput fullWidth id="description" formControlName="description"
+              placeholder="Entrez une description" rows="5" required></textarea>
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-card class="add-project-form">
+        <nb-card-body>
+          <div class="form-group">
+            <label for="gitUrl">Git URL</label>
+            <input nbInput fullWidth id="gitUrl" formControlName="gitUrl" placeholder="Entrez l'URL Git" required />
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-card class="add-project-form">
+        <nb-card-body>
+          <div class="form-group">
+            <label for="token">Git Token</label>
+            <div class="input-group">
+              <input nbInput fullWidth [type]="hideToken ? 'password' : 'text'" id="token" formControlName="token"
+                placeholder="Entrez le token Git" required />
+              <button type="button" nbButton (click)="toggleTokenVisibility()">
+                <nb-icon [icon]="hideToken ? 'eye-outline' : 'eye-off-outline'"></nb-icon>
+              </button>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-card class="add-project-form">
+        <nb-card-body>
+          <div class="form-group">
+            <label for="sonarToken">Sonar Token</label>
+            <div class="input-group">
+              <input nbInput fullWidth [type]="hideToken ? 'password' : 'text'" id="sonarToken" formControlName="sonarToken"
+                placeholder="Entrez le token Sonar" required />
+              <button type="button" nbButton (click)="toggleTokenVisibility()">
+                <nb-icon [icon]="hideToken ? 'eye-outline' : 'eye-off-outline'"></nb-icon>
+              </button>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <button nbButton status="success" type="submit" [disabled]="!projectForm.valid">Ajouter Projet</button>
     </form>
-    </nb-card-body>
-  </nb-card>
-  
+  </nb-card-body>
+</nb-card>

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ProjectAddComponent implements OnInit {
   projectForm: FormGroup;
+  hideToken = true; 
 
   constructor(
     private fb: FormBuilder,
@@ -21,15 +22,37 @@ export class ProjectAddComponent implements OnInit {
     this.projectForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      gitUrl: ['', Validators.required]
+      gitUrl: ['', Validators.required],
+      token: ['', Validators.required],
+      sonarToken: ['', Validators.required],
     });
+  }
+
+  toggleTokenVisibility(): void {
+    this.hideToken = !this.hideToken;
   }
 
   onSubmit(): void {
     if (this.projectForm.valid) {
-      this.projectService.addProject(this.projectForm.value).subscribe(() => {
+      const formValue = this.projectForm.value;
+      const project = {
+        ...formValue,
+        ...this.extractGitUsernameAndRepo(formValue.gitUrl) // Extraire gitUsername et gitRepo
+      };
+
+      this.projectService.addProject(project).subscribe(() => {
         this.router.navigate(['/pages/agile/ci-devops-group2/project-management']);
       });
     }
+  }
+
+  private extractGitUsernameAndRepo(gitUrl: string): { gitUsername: string, gitRepo: string } {
+    if (gitUrl.startsWith('https://github.com/')) {
+      const parts = gitUrl.replace('https://github.com/', '').split('/');
+      if (parts.length === 2) {
+        return { gitUsername: parts[0], gitRepo: parts[1] };
+      }
+    }
+    return { gitUsername: '', gitRepo: '' };
   }
 }
