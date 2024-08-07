@@ -3,16 +3,16 @@
       <h3>Modifier le Projet</h3>
     </nb-card-header>
     <nb-card-body>
-      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
-        <nb-card>
+      <form [formGroup]="editProjectForm" (ngSubmit)="onSubmit()">
+        <nb-card class="edit-project-form">
           <nb-card-body>
             <div class="form-group">
               <label for="name">Nom du Projet</label>
-              <input nbInput fullWidth id="name" formControlName="name" placeholder="Entrez le nom du projet" required />
+              <input nbInput fullWidth id="name" formControlName="name" placeholder="Update project name" required />
             </div>
           </nb-card-body>
         </nb-card>
-        <nb-card>
+        <nb-card class="edit-project-form">
           <nb-card-body>
             <div class="form-group">
               <label for="description">Description</label>
@@ -21,7 +21,7 @@
             </div>
           </nb-card-body>
         </nb-card>
-        <nb-card>
+        <nb-card class="edit-project-form">
           <nb-card-body>
             <div class="form-group">
               <label for="gitUrl">Git URL</label>
@@ -29,7 +29,7 @@
             </div>
           </nb-card-body>
         </nb-card>
-        <nb-card>
+        <nb-card class="edit-project-form">
           <nb-card-body>
             <div class="form-group">
               <label for="token">Git Token</label>
@@ -43,7 +43,7 @@
             </div>
           </nb-card-body>
         </nb-card>
-        <nb-card>
+        <nb-card class="edit-project-form">
             <nb-card-body>
               <div class="form-group">
                 <label for="sonarToken">SonarQube Token</label>
@@ -57,8 +57,8 @@
               </div>
             </nb-card-body>
           </nb-card>
-        <button nbButton status="success" type="submit" [disabled]="!projectForm.valid">Mettre à jour Projet</button>
-      </form>
+          <button nbButton status="success" type="submit" [disabled]="!editProjectForm.valid">Update Project</button>
+        </form>
     </nb-card-body>
   </nb-card>
   
