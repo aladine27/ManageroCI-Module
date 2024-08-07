@@ -24,17 +24,25 @@ jobs:
     - name: Build with Maven
       working-directory: BackendStage
       run: mvn clean install --file pom.xml
-
+    
     - name: SonarCloud Scan
       working-directory: BackendStage
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
         mvn sonar:sonar \
-            -Dsonar.projectKey=manageroci2 \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-            -Dsonar.organization=manageroci \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
+    # - name: SonarCloud Scan
+    #   working-directory: BackendStage
+    #   env:
+    #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #   run: |
+    #     mvn sonar:sonar \
+    #         -Dsonar.projectKey=manageroci2 \
+    #         -Dsonar.host.url=https://sonarcloud.io \
+    #         -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+    #         -Dsonar.organization=manageroci \
 
     - name: Archive Artifacts
       uses: actions/upload-artifact@v3
