@@ -99,6 +99,28 @@ export class ViewDashboardComponent implements OnInit {
     );
   }
 
+  checkCodeQuality(): void {
+    const url = `/api/build/sonar`;
+    const body = {
+      gitUrl: this.project.gitUrl,
+      token: this.project.token,
+      sonarToken: this.project.sonarToken,
+    };
+    const params = { branch: this.selectedBranch };
+
+    this.http.post(url, body, { params }).subscribe(
+      (response: any) => {
+        this.sonarReport = response;
+        console.log('SonarQube report fetched successfully', this.sonarReport);
+        this.displayAlert('SonarQube report fetched successfully', 'success');
+      },
+      error => {
+        console.error('Error fetching SonarQube report', error);
+        this.displayAlert('Failed to fetch SonarQube report', 'danger');
+      }
+    );
+  }
+
   displayAlert(message: string, status: 'success' | 'danger'): void {
     this.alertMessage = message;
     this.alertStatus = status;
@@ -110,26 +132,5 @@ export class ViewDashboardComponent implements OnInit {
     this.router.navigate(['/pages/agile/ci-devops-group2/view-build-details', projectId]);
   }
 
-  checkCodeQuality(): void {
-    if (!this.project || !this.project.gitRepo) {
-      console.error('Projet ou paramètres manquants pour le rapport SonarQube');
-      return;
-    }
 
-    const url = `https://sonarcloud.io/api/measures/component?component=${this.project.gitRepo}&metricKeys=coverage,bugs,vulnerabilities,code_smells,duplicated_lines_density`;
-    const headers = {
-      'Authorization': `Bearer ${this.project.token}`
-    };
-
-    this.http.get(url, { headers: headers }).subscribe(
-      response => {
-        this.sonarReport = response;
-        console.log('Rapport SonarQube:', response);
-      },
-      error => {
-        console.error('Erreur lors de la récupération du rapport SonarQube', error);
-        this.displayAlert('Échec lors de la récupération du rapport SonarQube', 'danger');
-      }
-    );
-  }
 }

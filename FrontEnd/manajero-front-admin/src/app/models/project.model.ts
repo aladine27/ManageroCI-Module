@@ -6,9 +6,10 @@ export class Project {
     token: string;
     gitUsername: string;
     gitRepo: string;
+    sonarToken?: string;
 
   
-    constructor(id: string, name: string, description: string, gitUrl: string, token: string, gitUsername: string, gitRepo: string) {
+    constructor(id: string, name: string, description: string, gitUrl: string, token: string, gitUsername: string, gitRepo: string, sonarToken: string) {
       this.id = id;
       this.name = name;
       this.description = description;
@@ -16,6 +17,8 @@ export class Project {
       this.token = token;
       this.gitUsername = gitUsername;
       this.gitRepo = gitRepo;
+      this.sonarToken = sonarToken;
+
 
     }
   }

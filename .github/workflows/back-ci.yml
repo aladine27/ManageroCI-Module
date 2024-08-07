@@ -1,67 +1,43 @@
 name: CI Workflow
 
-# Déclencheurs du workflow
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+    branches: 
+      - '*'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
-      - name: List files
-        run: ls -la  # Vérifiez la structure du dépôt
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v2
-        with:
-          java-version: 17
-          distribution: 'temurin'
+    - name: Build with Maven
+      working-directory: BackendStage
+      run: mvn clean install --file pom.xml
 
-      - name: Build with Maven
-        run: mvn -B package --file :/Users/MSI/Desktop/GestionPiplineFix/ManageroCI-Module/BackendStage/pom.xml  # Ajustez le chemin si nécessaire
+    - name: SonarCloud Scan
+      working-directory: BackendStage
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: |
+        mvn sonar:sonar \
+            -Dsonar.projectKey=manageroci2 \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+            -Dsonar.organization=manageroci \
 
-      - name: Run tests
-        run: mvn test
-
-      - name: Archive Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-artifact
-          path: target/
-
-  sonarcloud:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v2
-        with:
-          java-version: 17
-          distribution: 'temurin'
-
-      - name: Cache SonarQube packages
-        uses: actions/cache@v2
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: |
-            ${{ runner.os }}-sonar
-
-      - name: Run SonarQube Scan
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn sonar:sonar
+    - name: Archive Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: BackendStage/target/
