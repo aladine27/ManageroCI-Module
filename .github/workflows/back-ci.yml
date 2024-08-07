@@ -3,7 +3,7 @@ name: CI Workflow
 on:
   push:
     branches: 
-      - '*'
+      - 'main'
 
 jobs:
   build:
@@ -33,7 +33,7 @@ jobs:
         mvn sonar:sonar \
             -Dsonar.projectKey=manageroci2 \
             -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+            -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
             -Dsonar.organization=manageroci \
 
     # - name: SonarCloud Scan
