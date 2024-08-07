@@ -17,11 +17,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: List resource files
-        run: |
-          echo "Listing resource files:"
-          find BackendStage/src/main/resources -type f -exec file {} \;
-
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -31,12 +26,9 @@ jobs:
       - name: Clean Maven cache
         run: mvn clean --file BackendStage/pom.xml
 
-      - name: Build with Maven
-        run: mvn -e -X package --file BackendStage/pom.xml
+      - name: Build and Test with Maven
+        run: mvn -e -X clean install --file BackendStage/pom.xml
 
-      - name: Run tests
-        run: mvn test --file BackendStage/pom.xml
-      
       - name: SonarCloud Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
