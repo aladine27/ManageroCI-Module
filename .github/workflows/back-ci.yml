@@ -35,7 +35,7 @@ jobs:
         SONAR_ORG: manageroci
       run: |
         mvn sonar:sonar \
-            -Dsonar.projectKey=manageroci_ManageroCI-Module \
+            -Dsonar.projectKey=manageroci \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }} \
             -Dsonar.organization=${{ env.SONAR_ORG }} \
