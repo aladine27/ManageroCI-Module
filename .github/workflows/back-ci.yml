@@ -37,12 +37,13 @@ jobs:
       - name: Run tests
         run: mvn test --file BackendStage/pom.xml
       
-      - name: Run SonarQube analysis
+      - name: SonarCloud Scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
         run: mvn sonar:sonar \
           -Dsonar.projectKey=manageroci \
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }}
-        working-directory: BackendStage
     
       - name: Archive Artifacts
         uses: actions/upload-artifact@v3
