@@ -38,8 +38,7 @@ jobs:
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
             -Dsonar.organization=manageroci \
-            -Dsonar.branch.name=GestionPiplineFixBranche
-
+            -Dsonar.branch.name=${{ github.ref_name }}
 
     - name: Archive Artifacts
       uses: actions/upload-artifact@v3
