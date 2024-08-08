@@ -99,27 +99,6 @@ export class ViewDashboardComponent implements OnInit {
     );
   }
 
-  checkCodeQuality(): void {
-    const url = `/api/build/sonar`;
-    const body = {
-      gitUrl: this.project.gitUrl,
-      token: this.project.token,
-    };
-    const params = { branch: this.selectedBranch };
-
-    this.http.post(url, body, { params }).subscribe(
-      (response: any) => {
-        this.sonarReport = response;
-        console.log('SonarQube report fetched successfully', this.sonarReport);
-        this.displayAlert('SonarQube report fetched successfully', 'success');
-      },
-      error => {
-        console.error('Error fetching SonarQube report', error);
-        this.displayAlert('Failed to fetch SonarQube report', 'danger');
-      }
-    );
-  }
-
   displayAlert(message: string, status: 'success' | 'danger'): void {
     this.alertMessage = message;
     this.alertStatus = status;
@@ -129,6 +108,28 @@ export class ViewDashboardComponent implements OnInit {
   
   viewBuildDetails(projectId: string): void {
     this.router.navigate(['/pages/agile/ci-devops-group2/view-build-details', projectId]);
+  }
+
+  checkCodeQuality(): void {
+    if (!this.project || !this.project.sonarToken) {
+      this.alertMessage = 'Project or SonarCloud token not defined.';
+      this.alertStatus = 'danger';
+      this.showAlert = true;
+      return;
+    }
+
+    this.projectService.getProjectQualityReport(this.project).subscribe(
+      (report) => {
+        this.sonarReport = report;
+        this.alertMessage = 'Code quality report loaded successfully.';
+        this.alertStatus = 'success';
+      },
+      (error) => {
+        console.error('Error fetching code quality report:', error);
+        this.alertMessage = 'Failed to load code quality report.';
+        this.alertStatus = 'danger';
+      }
+    );
   }
 
 

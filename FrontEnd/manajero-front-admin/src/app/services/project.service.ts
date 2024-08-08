@@ -10,6 +10,7 @@ import { Project } from '../models/project.model';
 })
 export class ProjectService {
   private baseUrl = 'http://localhost:8093/api/projects'; // URL de base pour les API
+  private sonarCloudApiUrl = 'https://sonarcloud.io/api/measures/component'; // URL de l'API de SonarCloud
 
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -42,16 +43,6 @@ export class ProjectService {
     return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
   }
 
-  // getBuildStatus(project: Project, runId: number): Observable<any> {
-  //   const url = `https://api.github.com/repos/${project.gitUsername}/${project.gitRepo}/actions/runs/${runId}`;
-  //   const headers = {
-  //     'Authorization': `Bearer ${project.token}`,
-  //     'Accept': 'application/vnd.github.v3+json'
-  //   };
-  
-  //   return this.http.get<any>(url, { headers: headers });
-  // }
-
   getAllWorkflowRuns(project: Project): Observable<any> {
     const url = `https://api.github.com/repos/${project.gitUsername}/${project.gitRepo}/actions/runs`;
     const headers = new HttpHeaders({
@@ -61,7 +52,8 @@ export class ProjectService {
   
     return this.http.get<any>(url, { headers: headers });
   }
-deleteWorkflowRun(project: Project, buildId: number): Observable<any> {
+
+  deleteWorkflowRun(project: Project, buildId: number): Observable<any> {
     const url = `https://api.github.com/repos/${project.gitUsername}/${project.gitRepo}/actions/runs/${buildId}`;
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${project.token}`,
@@ -70,5 +62,20 @@ deleteWorkflowRun(project: Project, buildId: number): Observable<any> {
 
     return this.http.delete<any>(url, { headers: headers });
   }
+  
+  getProjectQualityReport(project: Project): Observable<any> {
+    // URL de votre proxy local
+    const url = `http://localhost:8093/api/sonar/measures?component=${project.projectKey}&metricKeys=bugs,vulnerabilities,code_smells`;
+  
+    // Configuration des headers avec le token SonarCloud
+    const headers = new HttpHeaders({
+      'Authorization': `token ${project.sonarToken}`,
+      'Accept': 'application/json'
+    });
+  
+    // Envoi de la requête GET à l'API proxy
+    return this.http.get<any>(url, { headers });
+  }
+
 
 }

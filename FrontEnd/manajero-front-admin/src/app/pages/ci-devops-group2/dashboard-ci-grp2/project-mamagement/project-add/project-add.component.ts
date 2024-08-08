@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ProjectAddComponent implements OnInit {
   projectForm: FormGroup;
-  hideToken = true; 
+  hideToken = true;
+  hideSonarToken = true; 
 
   constructor(
     private fb: FormBuilder,
@@ -24,11 +25,17 @@ export class ProjectAddComponent implements OnInit {
       description: ['', Validators.required],
       gitUrl: ['', Validators.required],
       token: ['', Validators.required],
+      projectKey: ['', Validators.required],
+      sonarToken: ['', Validators.required],
     });
   }
 
   toggleTokenVisibility(): void {
     this.hideToken = !this.hideToken;
+  }
+
+  toggleSonarTokenVisibility(): void { // Add this method
+    this.hideSonarToken = !this.hideSonarToken;
   }
 
   onSubmit(): void {

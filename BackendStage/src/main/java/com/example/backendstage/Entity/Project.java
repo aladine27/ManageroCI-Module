@@ -12,11 +12,13 @@ public class Project {
     private String token;  // Ajout du champ token
     private String gitUsername; // New field for GitHub username
     private String gitRepo;
+    private String projectKey;
+    private String sonarToken; // Add this line if needed
 
     public Project() {
     }
 
-    public Project(String id, String name, String description, String gitUrl, String token, String gitUsername, String gitRepo) {
+    public Project(String id, String name, String description, String gitUrl, String token, String gitUsername, String gitRepo, String projectKey, String sonarToken) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -24,6 +26,24 @@ public class Project {
         this.token = token;
         this.gitUsername = gitUsername;
         this.gitRepo = gitRepo;
+        this.projectKey = projectKey;
+        this.sonarToken = sonarToken;
+    }
+
+    public String getSonarToken() {
+        return sonarToken;
+    }
+
+    public void setSonarToken(String sonarToken) {
+        this.sonarToken = sonarToken;
+    }
+
+    public String getProjectKey() {
+        return projectKey;
+    }
+
+    public void setProjectKey(String projectKey) {
+        this.projectKey = projectKey;
     }
 
     public String getGitUsername() {

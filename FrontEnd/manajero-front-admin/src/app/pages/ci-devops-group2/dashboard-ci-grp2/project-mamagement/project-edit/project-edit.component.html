@@ -43,6 +43,28 @@
             </div>
           </nb-card-body>
         </nb-card>
+        <nb-card class="edit-project-form">
+          <nb-card-body>
+            <div class="form-group">
+              <label for="projectKey">project Key</label>
+              <input nbInput fullWidth id="projectKey" formControlName="projectKey" placeholder="Entrez le project Key" required />
+            </div>
+          </nb-card-body>
+        </nb-card>
+        <nb-card class="edit-project-form">
+          <nb-card-body>
+            <div class="form-group">
+              <label for="sonarToken">SonarCloud Token</label>
+              <div class="input-group">
+                <input nbInput fullWidth [type]="hideSonarToken ? 'password' : 'text'" id="sonarToken" formControlName="sonarToken"
+                  placeholder="Entrez le token SonarCloud" required />
+                <button type="button" nbButton (click)="toggleSonarTokenVisibility()">
+                  <nb-icon [icon]="hideSonarToken ? 'eye-outline' : 'eye-off-outline'"></nb-icon>
+                </button>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
 
           <button nbButton status="success" type="submit" [disabled]="!editProjectForm.valid">Update Project</button>
         </form>

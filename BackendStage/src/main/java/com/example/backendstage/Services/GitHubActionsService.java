@@ -44,7 +44,7 @@ public class GitHubActionsService {
             return ResponseEntity.status(500).body("Failed to trigger build: " + e.getMessage());
         }
     }
-    
+
     private String extractRepoPath(String gitUrl) {
         return gitUrl.replace("https://github.com/", "").replace(".git", "");
     }

@@ -20,7 +20,7 @@
           <td>{{ project.description }}</td>
           <td><a [href]="project.gitUrl" target="_blank">{{ project.gitUrl }}</a></td>
           <td>
-              <button nbButton class="custom-button custom-button-primary"
+            <button nbButton class="custom-button custom-button-primary"
                 [routerLink]="['/pages/agile/ci-devops-group2/viewdashboard', project.id]">View</button>
             <button nbButton class="custom-button custom-button-info"
               [routerLink]="['/pages/agile/ci-devops-group2/project-management/edit-project', project.id]">Edit</button>
