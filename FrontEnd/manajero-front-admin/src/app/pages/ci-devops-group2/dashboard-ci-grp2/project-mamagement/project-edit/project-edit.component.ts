@@ -13,7 +13,6 @@ export class ProjectEditComponent implements OnInit {
   editProjectForm: FormGroup;
   projectId: string;
   hideToken = true; // Initial state to hide token
-  hideSonarToken = true; // Initial state to hide sonarToken
 
   constructor(
     private fb: FormBuilder,
@@ -26,7 +25,6 @@ export class ProjectEditComponent implements OnInit {
       description: ['', Validators.required],
       gitUrl: ['', [Validators.required]],
       token: ['', Validators.required], // Include token field in the form
-      sonarToken: ['', Validators.required] // Include sonarToken field in the form
     });
   }
 
@@ -44,7 +42,6 @@ export class ProjectEditComponent implements OnInit {
         description: project.description,
         gitUrl: project.gitUrl,
         token: project.token,
-        sonarToken: project.sonarToken // Include sonarToken when patching
       });
       console.log('Form values after patching:', this.editProjectForm.value); // Log form values
     });
@@ -54,9 +51,7 @@ export class ProjectEditComponent implements OnInit {
     this.hideToken = !this.hideToken;
   }
   
-  toggleSonarTokenVisibility(): void {
-    this.hideSonarToken = !this.hideSonarToken;
-  }
+
 
   onSubmit(): void {
     if (this.editProjectForm.valid) {

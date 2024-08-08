@@ -4,6 +4,8 @@ on:
   push:
     branches: 
       - '*'
+      
+  workflow_dispatch:  # Ajout du déclencheur pour les exécutions manuelles
 
 jobs:
   build:

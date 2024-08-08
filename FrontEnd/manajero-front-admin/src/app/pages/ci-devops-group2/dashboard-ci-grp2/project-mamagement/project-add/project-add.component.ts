@@ -24,7 +24,6 @@ export class ProjectAddComponent implements OnInit {
       description: ['', Validators.required],
       gitUrl: ['', Validators.required],
       token: ['', Validators.required],
-      sonarToken: ['', Validators.required],
     });
   }
 

@@ -104,7 +104,6 @@ export class ViewDashboardComponent implements OnInit {
     const body = {
       gitUrl: this.project.gitUrl,
       token: this.project.token,
-      sonarToken: this.project.sonarToken,
     };
     const params = { branch: this.selectedBranch };
 
