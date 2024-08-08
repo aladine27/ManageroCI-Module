@@ -22,8 +22,4 @@ public class BuildController {
         return gitHubActionsService.triggerBuild(project.getGitUrl(), project.getToken(), workflowFile);
     }
 
-    @PostMapping("/sonar")
-    public ResponseEntity<String> triggerSonarScan(@RequestBody Project project, @RequestParam String branch) {
-        return gitHubActionsService.triggerSonarScan(project.getGitUrl(), project.getToken(), project.getSonarToken(), branch);
-    }
 }

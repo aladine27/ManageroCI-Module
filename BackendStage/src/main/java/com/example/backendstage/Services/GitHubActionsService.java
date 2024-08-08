@@ -44,24 +44,7 @@ public class GitHubActionsService {
             return ResponseEntity.status(500).body("Failed to trigger build: " + e.getMessage());
         }
     }
-
-    public ResponseEntity<String> triggerSonarScan(String gitUrl, String token, String sonarToken, String branch) {
-        try {
-            String repoPath = extractRepoPath(gitUrl);
-            String sonarUrl = "https://sonarcloud.io/api/project_analyses/search?projectKey=" + repoPath;
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", "Basic " + sonarToken);
-            headers.set("Accept", "application/json");
-
-            HttpEntity<String> entity = new HttpEntity<>(headers);
-            return restTemplate.exchange(sonarUrl, HttpMethod.GET, entity, String.class);
-        } catch (RestClientException e) {
-            e.printStackTrace();
-            return ResponseEntity.status(500).body("Failed to trigger SonarQube scan: " + e.getMessage());
-        }
-    }
-
+    
     private String extractRepoPath(String gitUrl) {
         return gitUrl.replace("https://github.com/", "").replace(".git", "");
     }
