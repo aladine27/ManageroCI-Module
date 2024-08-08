@@ -25,6 +25,9 @@ jobs:
       working-directory: BackendStage
       run: mvn clean install --file pom.xml
     
+    - name: Echo Branch Name
+      run: echo "Current branch is ${{ github.ref_name }}"
+    
     - name: SonarCloud Scan
       working-directory: BackendStage
       env:
@@ -35,6 +38,7 @@ jobs:
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
             -Dsonar.organization=manageroci \
+            -Dsonar.branch.name=${{ github.ref_name }}
 
     - name: Archive Artifacts
       uses: actions/upload-artifact@v3
