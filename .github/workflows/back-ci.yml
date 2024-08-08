@@ -25,6 +25,9 @@ jobs:
       working-directory: BackendStage
       run: mvn clean install --file pom.xml
     
+    - name: List Generated Reports
+      run: ls -l BackendStage/target/
+    
     - name: SonarCloud Scan
       working-directory: BackendStage
       env:
