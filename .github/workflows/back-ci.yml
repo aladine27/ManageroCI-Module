@@ -39,7 +39,6 @@ jobs:
             -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
             -Dsonar.organization=manageroci \
             -Dsonar.branch.name=${{ github.ref_name }}
-            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 
     - name: Archive Artifacts
       uses: actions/upload-artifact@v3
