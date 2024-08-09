@@ -122,7 +122,7 @@ export class ViewDashboardComponent implements OnInit {
 
 
   checkCodeQuality(): void {
-    this.router.navigate(['/pages/agile/ci-devops-group2/sonar-analysis', this.projectId]);
+    this.router.navigate(['/pages/agile/ci-devops-group2/sonar-analysis', this.project.projectKey]);
   }
 
 

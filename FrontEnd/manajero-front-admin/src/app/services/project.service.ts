@@ -10,7 +10,7 @@ import { Project } from '../models/project.model';
 })
 export class ProjectService {
   private baseUrl = 'http://localhost:8093/api/projects'; // URL de base pour les API
-  private sonarCloudApiUrl = 'https://sonarcloud.io/api/measures/component'; // URL de l'API de SonarCloud
+  private sonarApiUrl = 'https://sonarcloud.io/api/measures/component';
 
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -63,19 +63,23 @@ export class ProjectService {
     return this.http.delete<any>(url, { headers: headers });
   }
   
-  getProjectQualityReport(project: Project): Observable<any> {
-    // URL de votre proxy local
-    const url = `http://localhost:8093/api/sonar/measures?component=${project.projectKey}&metricKeys=bugs,vulnerabilities,code_smells`;
-  
-    // Configuration des headers avec le token SonarCloud
-    const headers = new HttpHeaders({
-      'Authorization': `token ${project.sonarToken}`,
-      'Accept': 'application/json'
-    });
-  
-    // Envoi de la requête GET à l'API proxy
-    return this.http.get<any>(url, { headers });
+  getSonarMetrics(projectKey: string): Observable<any> {
+    const metricKeys = 'bugs,vulnerabilities,code_smells,coverage,duplicated_lines_density';
+    const url = `${this.sonarApiUrl}?component=${projectKey}&metricKeys=${metricKeys}`;
+    return this.http.get(url);
   }
 
+  getSonarAnalysisDate(projectKey: string): Observable<any> {
+    const url = `https://sonarcloud.io/api/project_analyses/search?project=${projectKey}&ps=1`;
+    return this.http.get(url);
+  }
+
+  // Récupérer l'historique des analyses
+  getAnalysisHistory(projectKey: string): Observable<any> {
+    return this.http.get(`https://sonarcloud.io/api/project_analyses/search?project=${projectKey}&ps=100`);
+  }
+
+
+  
 
 }

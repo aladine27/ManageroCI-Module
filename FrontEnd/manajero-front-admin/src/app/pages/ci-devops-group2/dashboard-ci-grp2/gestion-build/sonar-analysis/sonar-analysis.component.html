@@ -1,1 +1,12 @@
-<p>sonar-analysis works!</p>
+<nb-card *ngIf="sonarMetrics">
+    <nb-card-header>
+        <h3>Code Quality Report for {{ projectKey }}</h3>
+        <p *ngIf="analysisDate">Date of Analysis: {{ analysisDate | date:'medium' }}</p>
+      </nb-card-header>
+    <nb-card-body>
+      <div *ngFor="let metric of sonarMetrics">
+        <p>{{ metric.metric }}: {{ metric.value }}</p>
+      </div>
+    </nb-card-body>
+</nb-card>
+  
