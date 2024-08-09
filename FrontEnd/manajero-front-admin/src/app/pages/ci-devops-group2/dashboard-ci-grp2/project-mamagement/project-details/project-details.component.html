@@ -69,7 +69,7 @@
         <h3>Actions</h3>
     </nb-card-header>
     <nb-card-body>
-        <button nbButton status="success" (click)="buildProject()">Build Now</button>
+        <button nbButton status="success" (click)="StartBuild()">Start Build</button>
         <button nbButton status="primary" (click)="viewBuildDetails(project.id)">View Build Details</button>
         <button nbButton status="info" (click)="checkCodeQuality()">Check Code Quality</button>
 
@@ -79,24 +79,3 @@
     </nb-card-body>
 </nb-card>
 
-<nb-card *ngIf="sonarReport">
-    <nb-card-header>
-        <h3>Code Quality Report</h3>
-    </nb-card-header>
-    <nb-card-body>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Metric</th>
-                    <th>Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let metric of sonarReport.metrics">
-                    <td>{{ metric.metric }}</td>
-                    <td>{{ metric.value }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </nb-card-body>
-</nb-card>

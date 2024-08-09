@@ -16,6 +16,8 @@ import { PiplineAddComponent } from './ci-devops-group2/dashboard-ci-grp2/gestio
 import { ViewDashboardComponent } from './ci-devops-group2/dashboard-ci-grp2/view-dashboard/view-dashboard.component';
 import { BuildDetailsComponent } from './ci-devops-group2/dashboard-ci-grp2/gestion-build/build-details/build-details.component';
 import { SonarAnalysisComponent } from './ci-devops-group2/dashboard-ci-grp2/gestion-build/sonar-analysis/sonar-analysis.component';
+import { StepperBuildComponent } from './ci-devops-group2/dashboard-ci-grp2/gestion-build/stepper-build/stepper-build.component';
+import { ProjectDetailsComponent } from './ci-devops-group2/dashboard-ci-grp2/project-mamagement/project-details/project-details.component';
 
 
 const routes: Routes = [{
@@ -93,7 +95,9 @@ const routes: Routes = [{
         { path: 'admin/add-stage', component: StageAddComponent }, // New path for StageAddComponent
         { path: 'admin/add-pipline', component: PiplineAddComponent }, // New path for StageAddComponent
         { path: 'viewdashboard/:id', component: ViewDashboardComponent },
+        { path: 'project-details/:id', component: ProjectDetailsComponent },
         { path: 'sonar-analysis/:id', component: SonarAnalysisComponent },
+        { path: 'stepper-build/:id', component: StepperBuildComponent },
 
         { path: 'dashboard', component: WelcomeComponent }, // Define the route for adding tutorial here
         { path: 'edit-tutorial/:id', component: EditTutorialComponent, },

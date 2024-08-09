@@ -1,15 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Project } from '../../../../models/project.model';
-import { ProjectService } from '../../../../services/project.service';
-import { HttpClient } from '@angular/common/http';
+import { Project } from '../../../../../models/project.model';
+import { ProjectService } from '../../../../../services/project.service';
 
 @Component({
-  selector: 'ngx-view-dashboard',
-  templateUrl: './view-dashboard.component.html',
-  styleUrls: ['./view-dashboard.component.scss']
+  selector: 'ngx-project-details',
+  templateUrl: './project-details.component.html',
+  styleUrls: ['./project-details.component.scss']
 })
-export class ViewDashboardComponent implements OnInit {
+export class ProjectDetailsComponent implements OnInit {
   projectId: string;
   project: Project;
   branches: string[] = []; // Array to store branch names
@@ -124,7 +124,11 @@ export class ViewDashboardComponent implements OnInit {
     this.router.navigate(['/pages/agile/ci-devops-group2/sonar-analysis', this.project.projectKey]);
   }
 
+  StartBuild(): void {
+    this.router.navigate(['/pages/agile/ci-devops-group2/stepper-build', this.project.id]);
+  }
 
 
 
 }
+

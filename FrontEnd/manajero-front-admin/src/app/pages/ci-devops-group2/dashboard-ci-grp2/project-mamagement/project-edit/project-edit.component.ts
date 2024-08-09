@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '../../../../../services/project.service';
 import { Project } from '../../../../../models/project.model';
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-project-edit',
@@ -14,12 +15,15 @@ export class ProjectEditComponent implements OnInit {
   projectId: string;
   hideToken = true; // Initial state to hide token
   hideSonarToken = true; // Initial state to hide SonarCloud token
+  updateStatus: string = '';
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private toastrService: NbToastrService
+
   ) {
     this.editProjectForm = this.fb.group({
       name: ['', Validators.required],
@@ -70,14 +74,19 @@ export class ProjectEditComponent implements OnInit {
       this.projectService.updateProject(this.projectId, project).subscribe(
         response => {
           console.log('Projet mis à jour avec succès', response);
-          this.router.navigate(['/pages/agile/ci-devops-group2/project-management']);
+          this.toastrService.success('Projet mis à jour avec succès', 'Succès');
+          // this.router.navigate(['/pages/agile/ci-devops-group2/project-management']);
         },
         error => {
           console.error('Erreur lors de la mise à jour du projet', error);
+          this.toastrService.danger('Erreur lors de la mise à jour du projet', 'Erreur');
         }
       );
     }
   }
+  retern(): void {
+          this.router.navigate(['/pages/agile/ci-devops-group2/project-management']);
+        }
 
   private extractGitUsernameAndRepo(gitUrl: string): { gitUsername: string, gitRepo: string } {
     if (gitUrl.startsWith('https://github.com/')) {

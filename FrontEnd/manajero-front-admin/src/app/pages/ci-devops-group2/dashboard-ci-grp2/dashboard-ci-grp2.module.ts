@@ -21,6 +21,8 @@ import { BuildTriggerComponent } from './gestion-build/build-trigger/build-trigg
 import { ViewDashboardComponent } from './view-dashboard/view-dashboard.component';
 import { BuildDetailsComponent } from './gestion-build/build-details/build-details.component';
 import { SonarAnalysisComponent } from './gestion-build/sonar-analysis/sonar-analysis.component';
+import { StepperBuildComponent } from './gestion-build/stepper-build/stepper-build.component';
+import { ProjectDetailsComponent } from './project-mamagement/project-details/project-details.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { SonarAnalysisComponent } from './gestion-build/sonar-analysis/sonar-ana
     BuildTriggerComponent,
     ViewDashboardComponent,
     BuildDetailsComponent,
-    SonarAnalysisComponent
+    SonarAnalysisComponent,
+    StepperBuildComponent,
+    ProjectDetailsComponent,
 
    
  
@@ -68,6 +72,9 @@ import { SonarAnalysisComponent } from './gestion-build/sonar-analysis/sonar-ana
     
     
 
+  ],
+  exports: [
+    ProjectEditComponent
   ]
 })
 export class DashboardCiGrp2Module { 
