@@ -131,6 +131,17 @@ export class ViewDashboardComponent implements OnInit {
   viewBuildDetails(projectId: string): void {
     this.router.navigate(['/pages/agile/ci-devops-group2/view-build-details', projectId]);
   }
+ showGitToken = false;
+  showSonarToken = false;
+
+  toggleShowGitToken() {
+    this.showGitToken = !this.showGitToken;
+  }
+
+  toggleShowSonarToken() {
+    this.showSonarToken = !this.showSonarToken;
+  }
+
 
 
 }

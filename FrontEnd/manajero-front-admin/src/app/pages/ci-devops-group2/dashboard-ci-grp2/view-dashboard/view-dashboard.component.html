@@ -4,45 +4,65 @@
         <h3>Détails du Projet</h3>
     </nb-card-header>
     <nb-card-body>
-        <!-- Détails du projet -->
-        <div class="form-group">
-            <label>Nom du Projet:</label>
-            <p>{{ project.name }}</p>
-        </div>
-        <div class="form-group">
-            <label>Description:</label>
-            <p>{{ project.description }}</p>
-        </div>
-        <div class="form-group">
-            <label>Git URL:</label>
-            <a [href]="project.gitUrl" target="_blank">{{ project.gitUrl }}</a>
-        </div>
-        <div class="form-group">
-            <label>Git Username:</label>
-            <p>{{ project.gitUsername }}</p>
-        </div>
-        <div class="form-group">
-            <label>Git Repo:</label>
-            <p>{{ project.gitRepo }}</p>
-        </div>
-        <div class="form-group">
-            <label>Git Token:</label>
-            <p>{{ project.token }}</p>
-        </div>
-        <div class="form-group">
-            <label>SonarQube Token:</label>
-            <p>{{ project.sonarToken }}</p>
-        </div>
-        <div class="form-group">
-            <label>Branch:</label>
-            <nb-select [(selected)]="selectedBranch">
-                <nb-option *ngFor="let branch of branches" [value]="branch">{{ branch }}</nb-option>
-            </nb-select>
-        </div>
+        <!-- Détails du projet sous forme de tableau -->
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th>Nom du Projet</th>
+                    <td>{{ project.name }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ project.description }}</td>
+                </tr>
+                <tr>
+                    <th>Git URL</th>
+                    <td><a [href]="project.gitUrl" target="_blank">{{ project.gitUrl }}</a></td>
+                </tr>
+                <tr>
+                    <th>Git Username</th>
+                    <td>{{ project.gitUsername }}</td>
+                </tr>
+                <tr>
+                    <th>Git Repo</th>
+                    <td>{{ project.gitRepo }}</td>
+                </tr>
+                <tr>
+                    <th>Git Token</th>
+                    <td>
+                        <p>
+                            {{ showGitToken ? project.token : '********' }}
+                            <button nbButton ghost (click)="toggleShowGitToken()" style="padding-left: 5px;">
+                                <nb-icon [icon]="showGitToken ? 'eye-off-outline' : 'eye-outline'"></nb-icon>
+                            </button>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>SonarQube Token</th>
+                    <td>
+                        <p>
+                            {{ showSonarToken ? project.sonarToken : '********' }}
+                            <button nbButton ghost (click)="toggleShowSonarToken()" style="padding-left: 5px;">
+                                <nb-icon [icon]="showSonarToken ? 'eye-off-outline' : 'eye-outline'"></nb-icon>
+                            </button>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Branch</th>
+                    <td>
+                        <nb-select [(selected)]="selectedBranch">
+                            <nb-option *ngFor="let branch of branches" [value]="branch">{{ branch }}</nb-option>
+                        </nb-select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
         <button nbButton status="primary" routerLink="/pages/agile/ci-devops-group2/project-management">Retour</button>
     </nb-card-body>
 </nb-card>
-
 
 <nb-card>
     <nb-card-header>
@@ -64,8 +84,19 @@
         <h3>Code Quality Report</h3>
     </nb-card-header>
     <nb-card-body>
-        <div *ngFor="let metric of sonarReport.metrics">
-            <p>{{ metric.metric }}: {{ metric.value }}</p>
-        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let metric of sonarReport.metrics">
+                    <td>{{ metric.metric }}</td>
+                    <td>{{ metric.value }}</td>
+                </tr>
+            </tbody>
+        </table>
     </nb-card-body>
 </nb-card>
