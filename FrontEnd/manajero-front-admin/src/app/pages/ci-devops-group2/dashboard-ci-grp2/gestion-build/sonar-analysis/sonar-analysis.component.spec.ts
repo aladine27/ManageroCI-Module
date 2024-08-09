@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { KpiDashboardComponent } from './kpi-dashboard.component';
+import { SonarAnalysisComponent } from './sonar-analysis.component';
 
-describe('KpiDashboardComponent', () => {
-  let component: KpiDashboardComponent;
-  let fixture: ComponentFixture<KpiDashboardComponent>;
+describe('SonarAnalysisComponent', () => {
+  let component: SonarAnalysisComponent;
+  let fixture: ComponentFixture<SonarAnalysisComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ KpiDashboardComponent ]
+      declarations: [ SonarAnalysisComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(KpiDashboardComponent);
+    fixture = TestBed.createComponent(SonarAnalysisComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

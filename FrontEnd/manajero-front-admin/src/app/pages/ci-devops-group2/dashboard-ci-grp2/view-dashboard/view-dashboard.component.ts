@@ -111,26 +111,9 @@ export class ViewDashboardComponent implements OnInit {
   }
 
   checkCodeQuality(): void {
-    if (!this.project || !this.project.sonarToken) {
-      this.alertMessage = 'Project or SonarCloud token not defined.';
-      this.alertStatus = 'danger';
-      this.showAlert = true;
-      return;
-    }
-
-    this.projectService.getProjectQualityReport(this.project).subscribe(
-      (report) => {
-        this.sonarReport = report;
-        this.alertMessage = 'Code quality report loaded successfully.';
-        this.alertStatus = 'success';
-      },
-      (error) => {
-        console.error('Error fetching code quality report:', error);
-        this.alertMessage = 'Failed to load code quality report.';
-        this.alertStatus = 'danger';
-      }
-    );
+    this.router.navigate(['/pages/agile/ci-devops-group2/sonar-analysis', this.projectId]);
   }
+
 
 
 }

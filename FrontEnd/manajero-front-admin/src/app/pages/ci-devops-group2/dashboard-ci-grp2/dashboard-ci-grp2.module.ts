@@ -20,7 +20,7 @@ import { NbCardModule, NbFormFieldModule, NbInputModule, NbSelectModule, NbButto
 import { BuildTriggerComponent } from './gestion-build/build-trigger/build-trigger.component';
 import { ViewDashboardComponent } from './view-dashboard/view-dashboard.component';
 import { BuildDetailsComponent } from './gestion-build/build-details/build-details.component';
-import { KpiDashboardComponent } from './kpi-dashboard/kpi-dashboard.component';
+import { SonarAnalysisComponent } from './gestion-build/sonar-analysis/sonar-analysis.component';
 
 
 @NgModule({
@@ -36,7 +36,7 @@ import { KpiDashboardComponent } from './kpi-dashboard/kpi-dashboard.component';
     BuildTriggerComponent,
     ViewDashboardComponent,
     BuildDetailsComponent,
-   KpiDashboardComponent
+    SonarAnalysisComponent
 
    
  
