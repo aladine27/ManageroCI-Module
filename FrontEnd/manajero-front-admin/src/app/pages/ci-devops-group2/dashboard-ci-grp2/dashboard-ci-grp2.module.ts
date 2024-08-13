@@ -23,6 +23,7 @@ import { BuildDetailsComponent } from './gestion-build/build-details/build-detai
 import { SonarAnalysisComponent } from './gestion-build/sonar-analysis/sonar-analysis.component';
 import { StepperBuildComponent } from './gestion-build/stepper-build/stepper-build.component';
 import { ProjectDetailsComponent } from './project-mamagement/project-details/project-details.component';
+import { ViewKpiComponent } from './KPI-dashboard/view-kpi/view-kpi.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { ProjectDetailsComponent } from './project-mamagement/project-details/pr
     SonarAnalysisComponent,
     StepperBuildComponent,
     ProjectDetailsComponent,
+    ViewKpiComponent,
 
    
  
