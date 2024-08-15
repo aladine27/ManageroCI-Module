@@ -15,14 +15,18 @@ export class BuildDetailsComponent implements OnInit {
   successfulBuilds: number = 0;
   failedBuilds: number = 0;
   inProgressBuilds: number = 0;
-  averageBuildTime: number = 0; // en millisecondes
+  averageBuildTime: number = 0; // in milliseconds
 
-  // Variables pour les données des graphiques
+  // Variables for chart data
   pieChartData: any[] = [];
   colorScheme = {
     domain: ['#2196f3', '#4caf50', '#ff9800', '#f44336']
   };
   isChartVisible: boolean = false;
+
+  // Variables for notification message
+  notificationMessage: string | null = null;
+  isSuccess: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -43,19 +47,33 @@ export class BuildDetailsComponent implements OnInit {
       error => console.error('Erreur lors de la récupération des détails du projet', error)
     );
   }
+
   deleteBuild(buildId: number): void {
     this.projectService.deleteWorkflowRun(this.project, buildId).subscribe(
       () => {
         console.log(`Build avec ID ${buildId} supprimé avec succès.`);
-        // Mettre à jour la liste des builds après suppression
+        this.notificationMessage = `Le build avec ID ${buildId} a été supprimé avec succès.`;
+        this.isSuccess = true;
+        // Update build list after deletion
         this.buildDetails = this.buildDetails.filter(build => build.id !== buildId);
         this.calculateKPIs();
-        this.loadBuildDetails(); // Recharger les données pour les graphiques
+        this.loadBuildDetails(); // Reload data for charts
+        // Hide the message after 3 seconds
+        setTimeout(() => {
+          this.notificationMessage = null;
+        }, 3000);
       },
-      error => console.error('Erreur lors de la suppression du build', error)
+      error => {
+        console.error('Erreur lors de la suppression du build', error);
+        this.notificationMessage = `Une erreur s'est produite lors de la suppression du build.`;
+        this.isSuccess = false;
+        // Hide the message after 3 seconds
+        setTimeout(() => {
+          this.notificationMessage = null;
+        }, 3000);
+      }
     );
   }
-
 
   loadWorkflowRuns(): void {
     this.projectService.getAllWorkflowRuns(this.project).subscribe(
@@ -63,7 +81,7 @@ export class BuildDetailsComponent implements OnInit {
         if (response.workflow_runs.length > 0) {
           this.buildDetails = response.workflow_runs;
           this.calculateKPIs();
-          this.loadBuildDetails(); // Charger les données pour les graphiques
+          this.loadBuildDetails(); // Load data for charts
         }
       },
       error => console.error('Erreur lors de la récupération des runs des workflows', error)
@@ -75,7 +93,7 @@ export class BuildDetailsComponent implements OnInit {
     this.failedBuilds = this.buildDetails.filter(build => build.conclusion === 'failure').length;
     this.inProgressBuilds = this.buildDetails.filter(build => build.status === 'in_progress').length;
     
-    // Calculer le temps moyen de construction
+    // Calculate average build time
     const buildTimes = this.buildDetails.map(build => new Date(build.completed_at).getTime() - new Date(build.created_at).getTime());
     this.averageBuildTime = buildTimes.length > 0 ? (buildTimes.reduce((a, b) => a + b, 0) / buildTimes.length) : 0;
   }

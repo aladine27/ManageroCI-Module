@@ -3,6 +3,12 @@
     <h3>Détails du Build</h3>
   </nb-card-header>
   <nb-card-body>
+
+    <!-- Message de notification -->
+    <div *ngIf="notificationMessage" [ngClass]="{'success-message': isSuccess, 'error-message': !isSuccess}">
+      {{ notificationMessage }}
+    </div>
+
     <!-- Section KPI -->
     <nb-card *ngIf="buildDetails.length > 0" class="kpi-card">
       <nb-card-header>
