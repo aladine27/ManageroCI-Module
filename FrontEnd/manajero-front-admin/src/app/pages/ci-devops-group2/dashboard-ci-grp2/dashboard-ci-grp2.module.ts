@@ -16,14 +16,15 @@ import { PiplineAddComponent } from './gestion-pipline/pipline-add/pipline-add.c
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { NbCardModule, NbFormFieldModule, NbInputModule, NbSelectModule, NbButtonModule, NbLayoutModule, NbStepperModule, NbAccordionModule, NbSidebarModule, NbIconModule, NbMenuModule, NbListModule, NbToastrModule } from '@nebular/theme';
+import { NbCardModule, NbFormFieldModule, NbInputModule, NbSelectModule, NbButtonModule, NbLayoutModule, NbStepperModule, NbAccordionModule, NbSidebarModule, NbIconModule, NbMenuModule, NbListModule, NbToastrModule, NbThemeModule } from '@nebular/theme';
 import { BuildTriggerComponent } from './gestion-build/build-trigger/build-trigger.component';
 import { ViewDashboardComponent } from './view-dashboard/view-dashboard.component';
 import { BuildDetailsComponent } from './gestion-build/build-details/build-details.component';
 import { SonarAnalysisComponent } from './gestion-build/sonar-analysis/sonar-analysis.component';
 import { StepperBuildComponent } from './gestion-build/stepper-build/stepper-build.component';
 import { ProjectDetailsComponent } from './project-mamagement/project-details/project-details.component';
-
+import { ViewKpiComponent } from './KPI-dashboard/view-kpi/view-kpi.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ProjectDetailsComponent } from './project-mamagement/project-details/pr
     SonarAnalysisComponent,
     StepperBuildComponent,
     ProjectDetailsComponent,
+    ViewKpiComponent,
 
    
  
@@ -67,6 +69,15 @@ import { ProjectDetailsComponent } from './project-mamagement/project-details/pr
     NbIconModule,
     NbMenuModule,
     NbListModule,
+      NgxChartsModule,
+     
+    NbCardModule,
+    NbButtonModule,
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+
+      
+    
 
 
     

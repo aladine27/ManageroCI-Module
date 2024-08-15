@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Project } from '../models/project.model';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -78,6 +79,29 @@ export class ProjectService {
   getAnalysisHistory(projectKey: string): Observable<any> {
     return this.http.get(`https://sonarcloud.io/api/project_analyses/search?project=${projectKey}&ps=100`);
   }
+
+getAdditionalStatistics(projectKey: string): Observable<any> {
+  const url = `https://sonarcloud.io/api/measures/component?component=${projectKey}&metricKeys=bugs,code_smells,coverage,vulnerabilities,new_issues,total_issues`;
+  return this.http.get<any>(url).pipe(
+    tap(response => console.log('Raw response:', response)),
+    map(response => {
+      if (response && response.component && response.component.measures) {
+        return {
+          bugs: response.component.measures.find(m => m.metric === 'bugs')?.value,
+          codeSmells: response.component.measures.find(m => m.metric === 'code_smells')?.value,
+          coverage: response.component.measures.find(m => m.metric === 'coverage')?.value,
+          vulnerabilities: response.component.measures.find(m => m.metric === 'vulnerabilities')?.value,
+          newIssues: response.component.measures.find(m => m.metric === 'new_issues')?.value,
+          totalIssues: response.component.measures.find(m => m.metric === 'total_issues')?.value
+        };
+      } else {
+        throw new Error('Invalid response format');
+      }
+    })
+  );
+}
+
+
 
 
   
