@@ -53,6 +53,7 @@ export class ProjectService {
   
     return this.http.get<any>(url, { headers: headers });
   }
+  
 
   deleteWorkflowRun(project: Project, buildId: number): Observable<any> {
     const url = `https://api.github.com/repos/${project.gitUsername}/${project.gitRepo}/actions/runs/${buildId}`;
