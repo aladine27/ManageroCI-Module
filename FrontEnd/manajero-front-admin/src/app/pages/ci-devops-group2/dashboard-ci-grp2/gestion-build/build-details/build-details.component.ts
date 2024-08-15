@@ -43,6 +43,19 @@ export class BuildDetailsComponent implements OnInit {
       error => console.error('Erreur lors de la récupération des détails du projet', error)
     );
   }
+  deleteBuild(buildId: number): void {
+    this.projectService.deleteWorkflowRun(this.project, buildId).subscribe(
+      () => {
+        console.log(`Build avec ID ${buildId} supprimé avec succès.`);
+        // Mettre à jour la liste des builds après suppression
+        this.buildDetails = this.buildDetails.filter(build => build.id !== buildId);
+        this.calculateKPIs();
+        this.loadBuildDetails(); // Recharger les données pour les graphiques
+      },
+      error => console.error('Erreur lors de la suppression du build', error)
+    );
+  }
+
 
   loadWorkflowRuns(): void {
     this.projectService.getAllWorkflowRuns(this.project).subscribe(
